@@ -1,4 +1,4 @@
-const API = "https://server-3i0k.onrender.com/config";
+const API = "https://server-3i0k.onrender.com";
 
 async function loadConfig() {
   try {
