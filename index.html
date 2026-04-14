@@ -2,33 +2,41 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>inquieto</title>
+  <title>Painel Insano</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
+<!-- FUNDO ANIMADO -->
+<div id="particles"></div>
 
-    <!-- FOTO / PERFIL -->
-    <img src="https://i.pinimg.com/1200x/16/ca/cf/16cacfc20b9e163684e3268c79a7e2e0.jpg" class="avatar">
+<!-- MÚSICA -->
+<audio id="music" loop>
+  <source src="sua-musica.mp3" type="audio/mpeg">
+</audio>
 
-    <!-- NOME -->
-    <h1 class="name">inquieto</h1>
+<!-- BOTÃO MÚSICA -->
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
 
-    <!-- BIO -->
-    <p class="bio">amizades falsas</p>
+<!-- BOTÃO TEMA -->
+<button class="theme-btn" onclick="toggleTheme()">💜</button>
 
-    <!-- BOTÕES -->
-    <div class="links">
+<div class="container">
 
-      <a href="#" class="btn">Discord</a>
-      <a href="#" class="btn">Instagram</a>
-      <a href="https://www.tiktok.com/@bvece" class="btn">TikTok</a>
-      <a href="#" class="btn">GitHub</a>
+  <img src="https://via.placeholder.com/150" class="avatar">
 
-    </div>
+  <h1 class="name">SEU NOME</h1>
+  <p class="bio">sua bio insana aqui</p>
 
+  <div class="links">
+    <a href="#" class="btn">Discord</a>
+    <a href="#" class="btn">Instagram</a>
+    <a href="#" class="btn">TikTok</a>
+    <a href="#" class="btn">GitHub</a>
   </div>
 
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
