@@ -52,7 +52,7 @@ function loadLinks() {
 
   twitter.href = data.twitter;
   instagram.href = data.insta;
-  github.href = data.github;
+  tiktok.href = data.tiktok;
 }
 
 loadLinks();
