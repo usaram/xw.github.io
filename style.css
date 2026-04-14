@@ -1,43 +1,23 @@
 body {
   margin: 0;
-  background: radial-gradient(circle, #0a0014, #000);
-  font-family: Arial;
+  background: black;
   color: white;
   text-align: center;
+  font-family: Arial;
 }
 
-/* CONTAINER */
 .container {
   margin-top: 100px;
 }
 
-/* DISCORD BOX */
-.discord-box img {
-  width: 120px;
-  border-radius: 50%;
-  box-shadow: 0 0 25px purple;
-}
-
-/* STATUS CORES */
-.online { color: #00ff88; }
-.idle { color: #ffaa00; }
-.dnd { color: red; }
-.offline { color: gray; }
-
-/* SOCIAL ICONS LED */
 .socials a {
+  font-size: 40px;
   margin: 20px;
-  font-size: 30px;
   color: white;
   transition: 0.3s;
 }
 
-/* EFEITO LED */
 .socials a:hover {
-  color: #c77dff;
-  text-shadow:
-    0 0 5px #c77dff,
-    0 0 10px #c77dff,
-    0 0 20px #c77dff;
-  transform: scale(1.2);
+  color: purple;
+  text-shadow: 0 0 20px purple;
 }
