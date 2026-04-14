@@ -1,11 +1,21 @@
+:root {
+  --main-color: #c77dff;
+}
+
 body {
   margin: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: radial-gradient(circle, #0a0014, #000);
+  color: white;
+  font-family: Arial;
+  overflow: hidden;
 }
 
+/* CARD */
 .card {
   width: 300px;
   padding: 30px;
@@ -13,16 +23,16 @@ body {
 
   backdrop-filter: blur(20px);
   background: rgba(0,0,0,0.5);
-  border-radius: 20px;
 
-  box-shadow: 0 0 40px purple;
+  border-radius: 20px;
+  box-shadow: 0 0 40px var(--main-color);
 }
 
 /* AVATAR */
 #avatar {
   width: 110px;
   border-radius: 50%;
-  box-shadow: 0 0 25px purple;
+  box-shadow: 0 0 25px var(--main-color);
 }
 
 /* STATUS */
@@ -39,28 +49,18 @@ body {
 }
 
 .socials a:hover {
-  color: #c77dff;
+  color: var(--main-color);
   text-shadow:
-    0 0 5px #c77dff,
-    0 0 15px #c77dff,
-    0 0 30px #c77dff;
+    0 0 5px var(--main-color),
+    0 0 15px var(--main-color),
+    0 0 30px var(--main-color);
   transform: scale(1.2);
 }
 
-/* EDITOR */
-#editor {
+/* PARTICLES */
+#particles {
   position: fixed;
-  bottom: 0;
   width: 100%;
-  background: black;
-  padding: 20px;
-  display: none;
-}
-
-.edit-btn {
-  margin-top: 15px;
-  padding: 8px;
-  border: none;
-  background: purple;
-  color: white;
+  height: 100%;
+  z-index: -1;
 }
