@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Painel Insano</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>VOID PANEL</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- FUNDO ANIMADO -->
+<!-- LOADING -->
+<div id="loading">Inicializando...</div>
+
+<!-- LOGIN FAKE -->
+<div id="login">
+  <h2>ACCESS</h2>
+  <input type="text" placeholder="Username">
+  <input type="password" placeholder="Password">
+  <button onclick="enterSite()">ENTER</button>
+</div>
+
+<!-- SITE -->
+<div id="site" class="hidden">
+
 <div id="particles"></div>
 
-<!-- MÚSICA -->
 <audio id="music" loop>
-  <source src="sua-musica.mp3" type="audio/mpeg">
+  <source src="music.mp3">
 </audio>
 
-<!-- BOTÃO MÚSICA -->
 <button class="music-btn" onclick="toggleMusic()">🎵</button>
-
-<!-- BOTÃO TEMA -->
-<button class="theme-btn" onclick="toggleTheme()">💜</button>
+<button class="theme-btn" onclick="toggleTheme()">⚡</button>
+<button class="edit-btn" onclick="toggleEditor()">⚙️</button>
 
 <div class="container">
 
-  <img src="https://via.placeholder.com/150" class="avatar">
+  <img id="avatar" src="https://via.placeholder.com/150">
 
-  <h1 class="name">SEU NOME</h1>
-  <p class="bio">sua bio insana aqui</p>
+  <h1 id="name">void.user</h1>
+  <p id="bio">system corrupted</p>
 
-  <div class="links">
-    <a href="#" class="btn">Discord</a>
-    <a href="#" class="btn">Instagram</a>
-    <a href="#" class="btn">TikTok</a>
-    <a href="#" class="btn">GitHub</a>
-  </div>
+  <div id="links"></div>
+
+  <p class="views">views: <span id="views"></span></p>
+
+</div>
+
+<!-- EDITOR -->
+<div id="editor" class="hidden">
+  <h3>EDITOR</h3>
+  <input id="editName" placeholder="Nome">
+  <input id="editBio" placeholder="Bio">
+  <input id="editAvatar" placeholder="Link da imagem">
+  <textarea id="editLinks" placeholder="nome|link"></textarea>
+  <button onclick="saveConfig()">Salvar</button>
+</div>
 
 </div>
 
