@@ -1,50 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Painel Insano</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Meu Painel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="bg"></div>
+  <div class="container">
 
-<div class="app">
+    <!-- FOTO / PERFIL -->
+    <img src="https://via.placeholder.com/150" class="avatar">
 
-  <div class="sidebar">
-    <h2>⚡ Painel</h2>
+    <!-- NOME -->
+    <h1 class="name">SEU NOME</h1>
 
-    <button class="active" onclick="showTab('home', this)">Home</button>
-    <button onclick="showTab('contas', this)">Contas</button>
-    <button onclick="showTab('config', this)">Config</button>
-  </div>
+    <!-- BIO -->
+    <p class="bio">Sua descrição aqui</p>
 
-  <div class="content">
+    <!-- BOTÕES -->
+    <div class="links">
 
-    <div id="home" class="tab active">
-      <h1>Dashboard</h1>
+      <a href="#" class="btn">Discord</a>
+      <a href="#" class="btn">Instagram</a>
+      <a href="#" class="btn">TikTok</a>
+      <a href="#" class="btn">GitHub</a>
 
-      <div class="card">
-        <img src="https://via.placeholder.com/100">
-        <h2>Seu Nome</h2>
-        <p>Status: Online</p>
-      </div>
-    </div>
-
-    <div id="contas" class="tab">
-      <h1>Contas</h1>
-      <div id="accounts"></div>
-      <button class="glow" onclick="addAccount()">+ Adicionar</button>
-    </div>
-
-    <div id="config" class="tab">
-      <h1>Config</h1>
-      <button class="glow" onclick="toggleTheme()">Trocar Tema</button>
     </div>
 
   </div>
-</div>
 
-<script src="script.js"></script>
 </body>
 </html>
