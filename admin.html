@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Painel</title>
+</head>
+<body>
+
+<h2>Configurar Site</h2>
+
+<input id="color" placeholder="Cor (#ff00ff)">
+<input id="bg" placeholder="Link do fundo">
+
+<input id="twitter" placeholder="Twitter">
+<input id="insta" placeholder="Instagram">
+<input id="tiktok" placeholder="TikTok">
+
+<button onclick="save()">Salvar</button>
+
+<script>
+function save() {
+  const config = {
+    color: color.value,
+    bg: `url(${bg.value}) center/cover`,
+    links: {
+      twitter: twitter.value,
+      insta: insta.value,
+      tiktok: tiktok.value
+    }
+  };
+
+  localStorage.setItem("config", JSON.stringify(config));
+  alert("Salvo!");
+}
+</script>
+
+</body>
+</html>
