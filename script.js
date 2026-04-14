@@ -1,33 +1,29 @@
-// ⚠️ COLOCA SEU ID AQUI
-const USER_ID = "1466308940634652745";
+const API = "https://SEU-LINK-DO-SERVIDOR/config";
 
-// API LANYARD
-async function updateDiscord() {
-  const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
-  const data = await res.json();
+async function loadConfig() {
+  try {
+    const res = await fetch(API);
+    const cfg = await res.json();
 
-  const user = data.data;
+    // FUNDO
+    document.body.style.background = `url(${cfg.bg}) center/cover`;
 
-  // USER
-  document.getElementById("username").innerText =
-    user.discord_user.username;
+    // MÚSICA
+    const audio = document.getElementById("music");
+    if (cfg.music) {
+      audio.src = cfg.music;
+    }
 
-  // AVATAR
-  document.getElementById("avatar").src =
-    `https://cdn.discordapp.com/avatars/${USER_ID}/${user.discord_user.avatar}.png`;
+    // LINKS
+    document.getElementById("twitter").href = cfg.links.twitter;
+    document.getElementById("instagram").href = cfg.links.instagram;
+    document.getElementById("github").href = cfg.links.github;
 
-  // STATUS
-  const statusEl = document.getElementById("status");
-  statusEl.innerText = user.discord_status;
-  statusEl.className = user.discord_status;
-
-  // ATIVIDADE
-  if (user.activities.length > 0) {
-    document.getElementById("activity").innerText =
-      user.activities[0].name;
+  } catch (e) {
+    console.log("Erro ao conectar API");
   }
 }
 
-// ATUALIZA SEMPRE
-setInterval(updateDiscord, 5000);
-updateDiscord();
+// ATUALIZA
+setInterval(loadConfig, 5000);
+loadConfig();
