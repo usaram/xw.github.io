@@ -2,26 +2,25 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Painel</title>
+<title>Painel Insano</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="bg"></div>
+
 <div class="app">
 
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <h2>⚡ Painel</h2>
 
-    <button onclick="showTab('home')">Home</button>
-    <button onclick="showTab('contas')">Contas</button>
-    <button onclick="showTab('config')">Config</button>
+    <button class="active" onclick="showTab('home', this)">Home</button>
+    <button onclick="showTab('contas', this)">Contas</button>
+    <button onclick="showTab('config', this)">Config</button>
   </div>
 
-  <!-- CONTEÚDO -->
   <div class="content">
 
-    <!-- HOME -->
     <div id="home" class="tab active">
       <h1>Dashboard</h1>
 
@@ -32,20 +31,15 @@
       </div>
     </div>
 
-    <!-- CONTAS -->
     <div id="contas" class="tab">
-      <h1>Contas Conectadas</h1>
-
+      <h1>Contas</h1>
       <div id="accounts"></div>
-
-      <button class="add" onclick="addAccount()">+ Adicionar Conta</button>
+      <button class="glow" onclick="addAccount()">+ Adicionar</button>
     </div>
 
-    <!-- CONFIG -->
     <div id="config" class="tab">
-      <h1>Configurações</h1>
-
-      <button onclick="toggleTheme()">Trocar Tema</button>
+      <h1>Config</h1>
+      <button class="glow" onclick="toggleTheme()">Trocar Tema</button>
     </div>
 
   </div>
