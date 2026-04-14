@@ -2,26 +2,42 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>V6 FINAL BOSS</title>
+<title>VOID PROFILE</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+<div id="particles"></div>
 
-  <h1>Meu Painel</h1>
+<div class="card">
 
+  <!-- DISCORD -->
+  <img id="avatar">
+  <h1 id="username">loading...</h1>
+  <p id="status"></p>
+  <p id="activity"></p>
+
+  <!-- REDES -->
   <div class="socials">
     <a id="twitter"><i class="fab fa-x-twitter"></i></a>
     <a id="instagram"><i class="fab fa-instagram"></i></a>
     <a id="github"><i class="fab fa-github"></i></a>
   </div>
 
+  <!-- EDITAR -->
+  <button onclick="toggleEditor()" class="edit-btn">⚙️</button>
+
 </div>
 
-<audio id="music" autoplay loop></audio>
+<!-- EDITOR -->
+<div id="editor">
+  <input id="editTwitter" placeholder="Link Twitter/X">
+  <input id="editInsta" placeholder="Link Instagram">
+  <input id="editGithub" placeholder="Link GitHub">
+  <button onclick="saveLinks()">Salvar</button>
+</div>
 
 <script src="script.js"></script>
 </body>
