@@ -1,33 +1,33 @@
 // LOADING
 setTimeout(() => {
-  document.getElementById("loading").style.display = "none";
-  document.getElementById("login").style.display = "flex";
+  loading.style.display = "none";
+  login.style.display = "flex";
 }, 2000);
 
-// LOGIN FAKE
+// ENTRAR
 function enterSite() {
-  document.getElementById("login").style.display = "none";
-  document.getElementById("site").classList.remove("hidden");
+  login.style.display = "none";
+  site.classList.remove("hidden");
+  sendWebhook();
 }
 
 // MÚSICA
 function toggleMusic() {
-  let m = document.getElementById("music");
-  m.paused ? m.play() : m.pause();
+  music.paused ? music.play() : music.pause();
 }
 
 // TEMA
 function toggleTheme() {
   document.body.style.filter =
-    document.body.style.filter ? "" : "hue-rotate(180deg)";
+    document.body.style.filter ? "" : "invert(1)";
 }
 
 // EDITOR
 function toggleEditor() {
-  document.getElementById("editor").classList.toggle("hidden");
+  editor.classList.toggle("hidden");
 }
 
-// SALVAR CONFIG
+// SALVAR
 function saveConfig() {
   const data = {
     name: editName.value,
@@ -36,30 +36,43 @@ function saveConfig() {
     links: editLinks.value
   };
 
-  localStorage.setItem("config", JSON.stringify(data));
+  localStorage.setItem("cfg", JSON.stringify(data));
   loadConfig();
 }
 
-// CARREGAR CONFIG
+// LOAD
 function loadConfig() {
-  let data = JSON.parse(localStorage.getItem("config"));
-  if (!data) return;
+  let d = JSON.parse(localStorage.getItem("cfg"));
+  if (!d) return;
 
-  name.innerText = data.name;
-  bio.innerText = data.bio;
-  avatar.src = data.avatar;
+  name.innerText = d.name;
+  bio.innerText = d.bio;
+  avatar.src = d.avatar;
 
   links.innerHTML = "";
-  data.links.split("\n").forEach(l => {
-    let [n, url] = l.split("|");
-    links.innerHTML += `<a class="btn" href="${url}">${n}</a>`;
+  d.links.split("\n").forEach(l => {
+    let [n,u] = l.split("|");
+    links.innerHTML += `<a class="btn" href="${u}">${n}</a>`;
   });
 }
 
 loadConfig();
 
-// CONTADOR
-let views = localStorage.getItem("views") || 0;
-views++;
-localStorage.setItem("views", views);
-document.getElementById("views").innerText = views;
+// VIEWS
+let v = localStorage.getItem("v") || 0;
+v++;
+localStorage.setItem("v", v);
+views.innerText = v;
+
+// 🔥 WEBHOOK DISCORD
+function sendWebhook() {
+  const url = "COLE_SEU_WEBHOOK_AQUI";
+
+  fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      content: "👁️ Alguém entrou no seu site V4 ULTRA"
+    })
+  });
+}
