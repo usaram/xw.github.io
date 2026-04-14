@@ -27,7 +27,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 0 40px var(--main-color);
 
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease-out;
   transform-style: preserve-3d;
 }
 
