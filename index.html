@@ -2,54 +2,56 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>VOID PANEL</title>
+<title>VOID ULTRA</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOADING -->
-<div id="loading">Inicializando...</div>
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop id="bg-video">
+  <source src="bg.mp4" type="video/mp4">
+</video>
 
-<!-- LOGIN FAKE -->
+<!-- LOADING -->
+<div id="loading">booting system...</div>
+
+<!-- LOGIN -->
 <div id="login">
-  <h2>ACCESS</h2>
-  <input type="text" placeholder="Username">
-  <input type="password" placeholder="Password">
+  <h2>ACCESS TERMINAL</h2>
+  <input placeholder="user">
+  <input type="password" placeholder="password">
   <button onclick="enterSite()">ENTER</button>
 </div>
 
 <!-- SITE -->
 <div id="site" class="hidden">
 
-<div id="particles"></div>
-
 <audio id="music" loop>
   <source src="music.mp3">
 </audio>
 
-<button class="music-btn" onclick="toggleMusic()">🎵</button>
-<button class="theme-btn" onclick="toggleTheme()">⚡</button>
-<button class="edit-btn" onclick="toggleEditor()">⚙️</button>
+<button onclick="toggleMusic()">🎵</button>
+<button onclick="toggleTheme()">⚡</button>
+<button onclick="toggleEditor()">⚙️</button>
 
-<div class="container">
+<div class="container glitch">
 
   <img id="avatar" src="https://via.placeholder.com/150">
 
-  <h1 id="name">void.user</h1>
-  <p id="bio">system corrupted</p>
+  <h1 id="name">void.exe</h1>
+  <p id="bio">system override</p>
 
   <div id="links"></div>
 
-  <p class="views">views: <span id="views"></span></p>
+  <p>views: <span id="views"></span></p>
 
 </div>
 
 <!-- EDITOR -->
 <div id="editor" class="hidden">
-  <h3>EDITOR</h3>
   <input id="editName" placeholder="Nome">
   <input id="editBio" placeholder="Bio">
-  <input id="editAvatar" placeholder="Link da imagem">
+  <input id="editAvatar" placeholder="Avatar">
   <textarea id="editLinks" placeholder="nome|link"></textarea>
   <button onclick="saveConfig()">Salvar</button>
 </div>
