@@ -17,7 +17,7 @@ body {
 
 /* CARD */
 .card {
-  width: 300px;
+  width: 320px;
   padding: 30px;
   text-align: center;
 
@@ -26,6 +26,9 @@ body {
 
   border-radius: 20px;
   box-shadow: 0 0 40px var(--main-color);
+
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
 }
 
 /* AVATAR */
@@ -35,15 +38,10 @@ body {
   box-shadow: 0 0 25px var(--main-color);
 }
 
-/* STATUS */
-.online { color: #00ff88; }
-.idle { color: orange; }
-.dnd { color: red; }
-
 /* SOCIALS */
 .socials a {
-  margin: 15px;
-  font-size: 28px;
+  margin: 12px;
+  font-size: 26px;
   color: white;
   transition: 0.3s;
 }
@@ -52,8 +50,7 @@ body {
   color: var(--main-color);
   text-shadow:
     0 0 5px var(--main-color),
-    0 0 15px var(--main-color),
-    0 0 30px var(--main-color);
+    0 0 20px var(--main-color);
   transform: scale(1.2);
 }
 
