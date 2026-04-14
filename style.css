@@ -1,96 +1,98 @@
 body {
   margin: 0;
-  font-family: Arial;
-  overflow: hidden;
+  font-family: monospace;
+  background: black;
   color: white;
+  overflow: hidden;
 }
 
-/* FUNDO */
-#particles {
+/* LOADING */
+#loading {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, #0a0014, #000);
-  z-index: -1;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: purple;
+  font-size: 24px;
 }
 
-/* CONTAINER */
+/* LOGIN */
+#login {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login input, #login button {
+  margin: 10px;
+  padding: 10px;
+  background: black;
+  border: 1px solid purple;
+  color: white;
+}
+
+/* SITE */
+.hidden { display: none; }
+
 .container {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  margin: auto;
-  width: 320px;
-  padding: 30px;
   text-align: center;
-
-  background: rgba(0,0,0,0.6);
-  border-radius: 20px;
-
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px purple;
 }
 
-/* AVATAR */
-.avatar {
-  width: 110px;
+img {
+  width: 120px;
   border-radius: 50%;
-  border: 3px solid #c77dff;
   box-shadow: 0 0 20px purple;
 }
 
-/* TEXTO */
-.name {
+h1 {
   color: #c77dff;
 }
 
-.bio {
-  color: #aaa;
-  font-size: 14px;
-}
-
-/* BOTÕES */
 .btn {
   display: block;
-  margin: 12px 0;
-  padding: 12px;
-  border-radius: 12px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid purple;
   text-decoration: none;
   color: white;
-
-  border: 1px solid #c77dff;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #c77dff;
-  box-shadow: 0 0 20px #c77dff;
-  transform: scale(1.05);
 }
 
 /* BOTÕES FIXOS */
-.music-btn, .theme-btn {
+.music-btn, .theme-btn, .edit-btn {
   position: fixed;
   top: 20px;
   padding: 10px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-
-  background: rgba(0,0,0,0.6);
+  background: black;
+  border: 1px solid purple;
   color: white;
-  box-shadow: 0 0 10px purple;
 }
 
 .music-btn { right: 20px; }
 .theme-btn { right: 70px; }
+.edit-btn { right: 120px; }
 
-/* CURSOR CUSTOM */
-body {
-  cursor: crosshair;
+/* EDITOR */
+#editor {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  padding: 20px;
+  border-top: 1px solid purple;
 }
 
-/* TEMA ALTERNATIVO */
-.alt {
-  filter: hue-rotate(120deg);
+textarea {
+  width: 100%;
+  height: 60px;
 }
