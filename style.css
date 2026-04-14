@@ -1,83 +1,138 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0a0a0a;
   color: white;
+  overflow: hidden;
 }
 
+/* FUNDO ANIMADO */
+.bg {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, purple, black);
+  animation: moveBg 10s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-200px,-200px); }
+}
+
+/* APP */
 .app {
   display: flex;
   height: 100vh;
+  backdrop-filter: blur(10px);
 }
 
 /* SIDEBAR */
 .sidebar {
-  width: 220px;
-  background: #111;
+  width: 230px;
+  background: rgba(0,0,0,0.6);
   padding: 20px;
-  border-right: 2px solid purple;
+  border-right: 1px solid rgba(255,255,255,0.1);
 }
 
 .sidebar h2 {
-  color: purple;
+  color: violet;
 }
 
+/* BOTÕES */
 .sidebar button {
   width: 100%;
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px;
   background: transparent;
-  border: 1px solid purple;
+  border: none;
   color: white;
   cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
 .sidebar button:hover {
-  background: purple;
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar .active {
+  background: linear-gradient(90deg, purple, violet);
+  box-shadow: 0 0 10px purple;
 }
 
 /* CONTEÚDO */
 .content {
   flex: 1;
-  padding: 30px;
+  padding: 40px;
 }
 
 /* TABS */
 .tab {
   display: none;
+  animation: fade 0.3s;
 }
 
 .tab.active {
   display: block;
 }
 
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
 /* CARD */
 .card {
-  background: #111;
+  width: 220px;
   padding: 20px;
   border-radius: 15px;
-  width: 200px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
   text-align: center;
-  border: 1px solid purple;
-  box-shadow: 0 0 15px purple;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px purple;
 }
 
 .card img {
   border-radius: 50%;
+  margin-bottom: 10px;
 }
 
-/* BOTÃO ADD */
-.add {
-  margin-top: 20px;
-  padding: 10px;
-  background: purple;
+/* BOTÃO GLOW */
+.glow {
+  padding: 10px 20px;
   border: none;
+  background: purple;
+  color: white;
   cursor: pointer;
+  border-radius: 10px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.glow:hover {
+  box-shadow: 0 0 20px violet;
+}
+
+/* CONTAS GRID */
+#accounts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* TEMA CLARO */
+.light .bg {
+  background: radial-gradient(circle, #ccc, white);
+}
+
 .light {
-  background: #eee;
   color: black;
 }
