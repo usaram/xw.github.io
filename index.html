@@ -2,59 +2,44 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>VOID ULTRA</title>
+<title>FINAL BOSS</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- ICONES -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- VIDEO BACKGROUND -->
-<video autoplay muted loop id="bg-video">
-  <source src="bg.mp4" type="video/mp4">
-</video>
+<div class="container">
 
-<!-- LOADING -->
-<div id="loading">booting system...</div>
+  <!-- DISCORD PROFILE -->
+  <div class="discord-box">
+    <img id="avatar">
+    <h1 id="username">loading...</h1>
+    <p id="status">...</p>
+    <p id="activity"></p>
+  </div>
 
-<!-- LOGIN -->
-<div id="login">
-  <h2>ACCESS TERMINAL</h2>
-  <input placeholder="user">
-  <input type="password" placeholder="password">
-  <button onclick="enterSite()">ENTER</button>
-</div>
+  <!-- REDES SOCIAIS -->
+  <div class="socials">
 
-<!-- SITE -->
-<div id="site" class="hidden">
+    <a href="https://discord.gg/seulink" target="_blank">
+      <i class="fab fa-discord"></i>
+    </a>
 
-<audio id="music" loop>
-  <source src="music.mp3">
-</audio>
+    <a href="https://instagram.com/seuuser" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
 
-<button onclick="toggleMusic()">🎵</button>
-<button onclick="toggleTheme()">⚡</button>
-<button onclick="toggleEditor()">⚙️</button>
+    <a href="https://tiktok.com/@seuuser" target="_blank">
+      <i class="fab fa-tiktok"></i>
+    </a>
 
-<div class="container glitch">
+    <a href="https://github.com/seuuser" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
 
-  <img id="avatar" src="https://via.placeholder.com/150">
-
-  <h1 id="name">void.exe</h1>
-  <p id="bio">system override</p>
-
-  <div id="links"></div>
-
-  <p>views: <span id="views"></span></p>
-
-</div>
-
-<!-- EDITOR -->
-<div id="editor" class="hidden">
-  <input id="editName" placeholder="Nome">
-  <input id="editBio" placeholder="Bio">
-  <input id="editAvatar" placeholder="Avatar">
-  <textarea id="editLinks" placeholder="nome|link"></textarea>
-  <button onclick="saveConfig()">Salvar</button>
-</div>
+  </div>
 
 </div>
 
