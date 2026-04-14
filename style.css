@@ -1,23 +1,72 @@
 body {
   margin: 0;
-  background: black;
-  color: white;
-  text-align: center;
   font-family: Arial;
+  background: radial-gradient(circle, #0a0014, #000);
+  color: white;
+  overflow: hidden;
 }
 
-.container {
-  margin-top: 100px;
+/* CARD */
+.card {
+  position: relative;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  padding: 30px;
+
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.5);
+
+  border-radius: 20px;
+  text-align: center;
+
+  box-shadow: 0 0 40px purple;
 }
 
+/* AVATAR */
+#avatar {
+  width: 110px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px purple;
+}
+
+/* STATUS */
+.online { color: #00ff88; }
+.idle { color: orange; }
+.dnd { color: red; }
+
+/* SOCIALS */
 .socials a {
-  font-size: 40px;
-  margin: 20px;
+  margin: 15px;
+  font-size: 28px;
   color: white;
   transition: 0.3s;
 }
 
 .socials a:hover {
-  color: purple;
-  text-shadow: 0 0 20px purple;
+  color: #c77dff;
+  text-shadow:
+    0 0 5px #c77dff,
+    0 0 15px #c77dff,
+    0 0 30px #c77dff;
+  transform: scale(1.2);
+}
+
+/* EDITOR */
+#editor {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  padding: 20px;
+  display: none;
+}
+
+.edit-btn {
+  margin-top: 15px;
+  padding: 8px;
+  border: none;
+  background: purple;
+  color: white;
 }
