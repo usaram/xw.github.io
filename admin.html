@@ -1,19 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<title>Painel</title>
+<meta charset="UTF-8">
+<title>Painel Admin</title>
+<style>
+body {
+  background: black;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+input {
+  margin: 10px;
+  padding: 10px;
+  width: 250px;
+}
+
+button {
+  padding: 10px;
+  background: purple;
+  border: none;
+  color: white;
+}
+</style>
 </head>
 <body>
 
-<h2>Configurar Site</h2>
+<h2>CONFIGURAR SITE</h2>
 
-<input id="color" placeholder="Cor (#ff00ff)">
+<input id="color" placeholder="Cor (#c77dff)">
 <input id="bg" placeholder="Link do fundo">
 
-<input id="twitter" placeholder="Twitter">
+<input id="twitter" placeholder="Twitter/X">
 <input id="insta" placeholder="Instagram">
 <input id="tiktok" placeholder="TikTok">
 
+<br>
 <button onclick="save()">Salvar</button>
 
 <script>
@@ -29,7 +52,7 @@ function save() {
   };
 
   localStorage.setItem("config", JSON.stringify(config));
-  alert("Salvo!");
+  alert("Salvo com sucesso!");
 }
 </script>
 
