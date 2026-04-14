@@ -1,5 +1,5 @@
 // ⚠️ COLOCA SEU ID AQUI
-const USER_ID = "SEU_ID_DISCORD";
+const USER_ID = "1469403001671389254";
 
 // API LANYARD
 async function updateDiscord() {
