@@ -1,20 +1,25 @@
-function showTab(tabId) {
+function showTab(tabId, btn) {
   document.querySelectorAll(".tab").forEach(tab => {
     tab.classList.remove("active");
   });
 
+  document.querySelectorAll(".sidebar button").forEach(b => {
+    b.classList.remove("active");
+  });
+
   document.getElementById(tabId).classList.add("active");
+  btn.classList.add("active");
 }
 
-// SIMULA CONTAS
+/* CONTAS */
 let accounts = [];
 
 function addAccount() {
-  const id = Math.floor(Math.random() * 1000);
+  const id = Math.floor(Math.random() * 9999);
 
   accounts.push({
     name: "User_" + id,
-    avatar: "https://via.placeholder.com/80"
+    avatar: "https://i.pravatar.cc/100?img=" + id
   });
 
   renderAccounts();
@@ -34,7 +39,7 @@ function renderAccounts() {
   });
 }
 
-// TEMA
+/* TEMA */
 function toggleTheme() {
   document.body.classList.toggle("light");
 }
