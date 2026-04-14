@@ -1,85 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inquieto</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<title>Painel</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- SPOTIFY -->
-        <section class="spotify-section">
-            <h2>INQUIETO</h2>
-            <iframe style="border-radius:12px" 
-                src="https://open.spotify.com/embed/playlist/6EJyyTil1DNI2hzwNVgRJO?si=JF_5rrIMSniyRU8BcMlmBA&pi=BlMzqKNqSquEn?utm_source=generator&theme=0" 
-                width="100%" 
-                height="200" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-            </iframe>
-        </section>
 
-        <!-- VÍDEO -->
-        <section class="video-section">
-            <video id="backgroundVideo" muted loop autoplay playsinline>
-                <source src="videos/meuvideo.mp4" type="video/mp4">
-                Seu navegador não suporta vídeo.
-            </video>
-        </section>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>⚡ Painel</h2>
+
+    <button onclick="showTab('home')">Home</button>
+    <button onclick="showTab('contas')">Contas</button>
+    <button onclick="showTab('config')">Config</button>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="content">
+
+    <!-- HOME -->
+    <div id="home" class="tab active">
+      <h1>Dashboard</h1>
+
+      <div class="card">
+        <img src="https://via.placeholder.com/100">
+        <h2>Seu Nome</h2>
+        <p>Status: Online</p>
+      </div>
     </div>
+
+    <!-- CONTAS -->
+    <div id="contas" class="tab">
+      <h1>Contas Conectadas</h1>
+
+      <div id="accounts"></div>
+
+      <button class="add" onclick="addAccount()">+ Adicionar Conta</button>
+    </div>
+
+    <!-- CONFIG -->
+    <div id="config" class="tab">
+      <h1>Configurações</h1>
+
+      <button onclick="toggleTheme()">Trocar Tema</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
-<section class="social-links-section">
-    <h2>Links</h2>
-    <div class="social-links-container">
-        
-       <div class="social-link-card">
-            <img src="https://i.pinimg.com/736x/c6/c5/26/c6c52674ac8843637a2d2d2c7f25206f.jpg" alt="Instagram Profile Picture" class="social-avatar">
-            <h3>Instagram</h3>
-            <p>User: 5vece</p>
-            <a href="https://www.instagram.com/5vece" target="_blank">Instagram</a>
-        </div>
-
-        <div class="social-link-card">
-            <img src="https://i.pinimg.com/736x/c6/c5/26/c6c52674ac8843637a2d2d2c7f25206f.jpg" alt="SoundCloud Avatar" class="social-avatar">
-            <h3>SoundCloud</h3>
-            <p>User: bvece</p>
-            <a href="https://soundcloud.com/bvece" target="_blank">SoundCloud</a>
-        </div>
-
-        <div class="social-link-card">
-            <img src="https://i.pinimg.com/736x/c6/c5/26/c6c52674ac8843637a2d2d2c7f25206f.jpg" alt="TikTok Avatar" class="social-avatar">
-            <h3>TikTok</h3>
-            <p>User: bvece</p>
-            <a href="https://tiktok.com/@bvece?_r=1&_t=ZS-92n7CbUY0cj" target="_blank">TikTok</a>
-        </div>
-
-       <div class="social-link-card">
-
-  <div class="avatar-wrapper">
-    <img id="discordAvatar" class="avatar">
-    <span id="statusDot" class="status-dot"></span>
-  </div>
-
-  <h3>Discord</h3>
-
-  <p>User: <span id="discordName">Carregando...</span></p>
-
-  <p id="activityText"></p>
-
-  <div id="spotifyBox" class="spotify" style="display:none;">
-    <img id="spotifyCover">
-    <div>
-      <p id="songName"></p>
-      <p id="artistName"></p>
-    </div>
-  </div>
-
-  <a href="https://discord.com/users/1462586784067358894" class="btn">Discord</a>
-
-</div>
-<script src="discord.js"></script>
