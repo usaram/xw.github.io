@@ -28,7 +28,14 @@ body {
   box-shadow: 0 0 40px var(--main-color);
 
   transition: transform 0.2s ease-out;
-  transform-style: preserve-3d;
+}
+
+/* CAPA */
+#cover {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  display: none;
 }
 
 /* AVATAR */
@@ -38,7 +45,7 @@ body {
   box-shadow: 0 0 25px var(--main-color);
 }
 
-/* SOCIALS */
+/* SOCIAL */
 .socials a {
   margin: 12px;
   font-size: 26px;
