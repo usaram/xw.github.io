@@ -12,7 +12,7 @@ let config = {
   }
 };
 
-// CONFIG
+// LOAD CONFIG
 function loadConfig() {
   const saved = JSON.parse(localStorage.getItem("config"));
   if (saved) config = saved;
@@ -20,9 +20,7 @@ function loadConfig() {
 }
 
 function applyConfig() {
-  if (config.bg) {
-    document.body.style.background = config.bg;
-  }
+  if (config.bg) document.body.style.background = config.bg;
 
   document.documentElement.style.setProperty("--main-color", config.color);
 
@@ -32,7 +30,7 @@ function applyConfig() {
   roblox.href = config.links.roblox || "#";
 }
 
-// DISCORD (ATIVIDADE REAL)
+// DISCORD
 async function updateDiscord() {
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
@@ -43,13 +41,20 @@ async function updateDiscord() {
     avatar.src =
       `https://cdn.discordapp.com/avatars/${USER_ID}/${user.discord_user.avatar}.png`;
 
-    // 🔥 ATIVIDADE
     let text = "Idle...";
+    const cover = document.getElementById("cover");
 
     if (user.listening_to_spotify) {
       text = `🎧 ${user.spotify.song} - ${user.spotify.artist}`;
+
+      cover.src = user.spotify.album_art_url;
+      cover.style.display = "block";
+
     } else if (user.activities.length > 0) {
       text = `🎮 ${user.activities[0].name}`;
+      cover.style.display = "none";
+    } else {
+      cover.style.display = "none";
     }
 
     activity.innerText = text;
@@ -62,14 +67,21 @@ async function updateDiscord() {
 setInterval(updateDiscord, 5000);
 updateDiscord();
 
-// 🖱️ EFEITO 3D (FOLLOW MOUSE)
+// MOUSE EFFECT
 const card = document.getElementById("card");
 
 document.addEventListener("mousemove", (e) => {
-  const x = (window.innerWidth / 2 - e.clientX) / 25;
-  const y = (window.innerHeight / 2 - e.clientY) / 25;
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
 
-  card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+  const percentX = (e.clientX - centerX) / centerX;
+  const percentY = (e.clientY - centerY) / centerY;
+
+  const rotateY = percentX * 8;
+  const rotateX = percentY * -8;
+
+  card.style.transform =
+    `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
 });
 
 // PARTICLES
