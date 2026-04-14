@@ -38,7 +38,7 @@ function saveLinks() {
   const links = {
     twitter: editTwitter.value,
     insta: editInsta.value,
-    github: editGithub.value
+    tiktok: editTiktok.value
   };
 
   localStorage.setItem("links", JSON.stringify(links));
