@@ -51,7 +51,7 @@ async function updateDiscord() {
       cover.style.display = "block";
 
     } else if (user.activities.length > 0) {
-      text = `🎮 ${user.activities[0].name}`;
+      text = ` ${user.activities[0].name}`;
       cover.style.display = "none";
     } else {
       cover.style.display = "none";
