@@ -1,68 +1,96 @@
 body {
   margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-
-  /* FUNDO CUSTOMIZÁVEL */
-  background: url("https://images.unsplash.com/photo-1519681393784-d120267933ba") no-repeat center center/cover;
-
+  font-family: Arial;
+  overflow: hidden;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
-/* CAIXA PRINCIPAL */
-.container {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  width: 300px;
+/* FUNDO */
+#particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #0a0014, #000);
+  z-index: -1;
+}
 
+/* CONTAINER */
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  width: 320px;
+  padding: 30px;
+  text-align: center;
+
+  background: rgba(0,0,0,0.6);
+  border-radius: 20px;
+
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px purple;
+}
+
+/* AVATAR */
+.avatar {
+  width: 110px;
+  border-radius: 50%;
+  border: 3px solid #c77dff;
   box-shadow: 0 0 20px purple;
 }
 
-/* FOTO */
-.avatar {
-  width: 100px;
-  border-radius: 50%;
-  border: 3px solid purple;
-}
-
-/* NOME */
+/* TEXTO */
 .name {
-  margin: 10px 0;
   color: #c77dff;
 }
 
-/* BIO */
 .bio {
+  color: #aaa;
   font-size: 14px;
-  color: #ccc;
 }
 
 /* BOTÕES */
-.links {
-  margin-top: 20px;
-}
-
 .btn {
   display: block;
-  margin: 10px 0;
-  padding: 10px;
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 12px;
   text-decoration: none;
   color: white;
 
-  border: 1px solid purple;
-  border-radius: 10px;
-
+  border: 1px solid #c77dff;
   transition: 0.3s;
 }
 
-/* EFEITO HOVER */
 .btn:hover {
-  background: purple;
+  background: #c77dff;
+  box-shadow: 0 0 20px #c77dff;
+  transform: scale(1.05);
+}
+
+/* BOTÕES FIXOS */
+.music-btn, .theme-btn {
+  position: fixed;
+  top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
   box-shadow: 0 0 10px purple;
+}
+
+.music-btn { right: 20px; }
+.theme-btn { right: 70px; }
+
+/* CURSOR CUSTOM */
+body {
+  cursor: crosshair;
+}
+
+/* TEMA ALTERNATIVO */
+.alt {
+  filter: hue-rotate(120deg);
 }
