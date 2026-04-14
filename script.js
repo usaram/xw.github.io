@@ -1,62 +1,59 @@
 const USER_ID = "1469403001671389254";
 
-// CONFIG PADRÃO
+// CONFIG
 let config = {
   color: "#c77dff",
   bg: "",
   links: {
     twitter: "",
     insta: "",
-    tiktok: ""
+    tiktok: "",
+    roblox: ""
   }
 };
 
-// CARREGAR CONFIG
+// CONFIG
 function loadConfig() {
   const saved = JSON.parse(localStorage.getItem("config"));
   if (saved) config = saved;
-
   applyConfig();
 }
 
-// APLICAR CONFIG
 function applyConfig() {
   if (config.bg) {
     document.body.style.background = config.bg;
   }
 
-  document.documentElement.style.setProperty(
-    "--main-color",
-    config.color || "#c77dff"
-  );
+  document.documentElement.style.setProperty("--main-color", config.color);
 
-  document.getElementById("twitter").href = config.links.twitter || "#";
-  document.getElementById("instagram").href = config.links.insta || "#";
-  document.getElementById("tiktok").href = config.links.tiktok || "#";
+  twitter.href = config.links.twitter || "#";
+  instagram.href = config.links.insta || "#";
+  tiktok.href = config.links.tiktok || "#";
+  roblox.href = config.links.roblox || "#";
 }
 
-// DISCORD
+// DISCORD (ATIVIDADE REAL)
 async function updateDiscord() {
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
     const data = await res.json();
-
     const user = data.data;
 
-    document.getElementById("username").innerText =
-      user.discord_user.username;
-
-    document.getElementById("avatar").src =
+    username.innerText = user.discord_user.username;
+    avatar.src =
       `https://cdn.discordapp.com/avatars/${USER_ID}/${user.discord_user.avatar}.png`;
 
-    const status = document.getElementById("status");
-    status.innerText = user.discord_status;
-    status.className = user.discord_status;
+    // 🔥 ATIVIDADE
+    let text = "Idle...";
 
-    if (user.activities.length > 0) {
-      document.getElementById("activity").innerText =
-        user.activities[0].name;
+    if (user.listening_to_spotify) {
+      text = `🎧 ${user.spotify.song} - ${user.spotify.artist}`;
+    } else if (user.activities.length > 0) {
+      text = `🎮 ${user.activities[0].name}`;
     }
+
+    activity.innerText = text;
+
   } catch (e) {
     console.log("Erro Discord");
   }
@@ -64,6 +61,16 @@ async function updateDiscord() {
 
 setInterval(updateDiscord, 5000);
 updateDiscord();
+
+// 🖱️ EFEITO 3D (FOLLOW MOUSE)
+const card = document.getElementById("card");
+
+document.addEventListener("mousemove", (e) => {
+  const x = (window.innerWidth / 2 - e.clientX) / 25;
+  const y = (window.innerHeight / 2 - e.clientY) / 25;
+
+  card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
 
 // PARTICLES
 const canvas = document.createElement("canvas");
