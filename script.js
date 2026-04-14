@@ -45,7 +45,7 @@ async function updateDiscord() {
     const cover = document.getElementById("cover");
 
     if (user.listening_to_spotify) {
-      text = `🎧 ${user.spotify.song} - ${user.spotify.artist}`;
+      text = ` ${user.spotify.song} - ${user.spotify.artist}`;
 
       cover.src = user.spotify.album_art_url;
       cover.style.display = "block";
