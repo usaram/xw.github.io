@@ -1,50 +1,65 @@
-// PARTICULAS SIMPLES
-const canvas = document.createElement("canvas");
-document.getElementById("particles").appendChild(canvas);
+// LOADING
+setTimeout(() => {
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("login").style.display = "flex";
+}, 2000);
 
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for (let i = 0; i < 80; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: Math.random() * 2,
-    speed: Math.random() * 0.5
-  });
+// LOGIN FAKE
+function enterSite() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("site").classList.remove("hidden");
 }
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  particles.forEach(p => {
-    p.y += p.speed;
-    if (p.y > canvas.height) p.y = 0;
-
-    ctx.fillStyle = "purple";
-    ctx.fillRect(p.x, p.y, p.size, p.size);
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
 
 // MÚSICA
 function toggleMusic() {
-  const music = document.getElementById("music");
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
-  }
+  let m = document.getElementById("music");
+  m.paused ? m.play() : m.pause();
 }
 
 // TEMA
 function toggleTheme() {
-  document.body.classList.toggle("alt");
+  document.body.style.filter =
+    document.body.style.filter ? "" : "hue-rotate(180deg)";
 }
+
+// EDITOR
+function toggleEditor() {
+  document.getElementById("editor").classList.toggle("hidden");
+}
+
+// SALVAR CONFIG
+function saveConfig() {
+  const data = {
+    name: editName.value,
+    bio: editBio.value,
+    avatar: editAvatar.value,
+    links: editLinks.value
+  };
+
+  localStorage.setItem("config", JSON.stringify(data));
+  loadConfig();
+}
+
+// CARREGAR CONFIG
+function loadConfig() {
+  let data = JSON.parse(localStorage.getItem("config"));
+  if (!data) return;
+
+  name.innerText = data.name;
+  bio.innerText = data.bio;
+  avatar.src = data.avatar;
+
+  links.innerHTML = "";
+  data.links.split("\n").forEach(l => {
+    let [n, url] = l.split("|");
+    links.innerHTML += `<a class="btn" href="${url}">${n}</a>`;
+  });
+}
+
+loadConfig();
+
+// CONTADOR
+let views = localStorage.getItem("views") || 0;
+views++;
+localStorage.setItem("views", views);
+document.getElementById("views").innerText = views;
