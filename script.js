@@ -1,9 +1,8 @@
 const container = document.getElementById("container");
 
-const profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+let profiles = JSON.parse(localStorage.getItem("profiles"));
 
-// 🔥 DEFINE MODO
-if(profiles.length <= 4){
+if(profiles.length > 0 && profiles.length <= 4){
   container.classList.add("center");
 } else {
   container.classList.add("top");
