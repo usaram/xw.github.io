@@ -1,6 +1,5 @@
 const container = document.getElementById("container");
 
-// 🔥 AGORA LÊ TODAS AS CONTAS DO STORAGE
 const profiles = JSON.parse(localStorage.getItem("profiles")) || [];
 
 profiles.forEach(profile => {
@@ -8,13 +7,13 @@ profiles.forEach(profile => {
   const card = document.createElement("div");
   card.className = "card";
 
-  // cor individual
   card.style.boxShadow =
     `0 0 20px ${profile.color}, 0 0 50px ${profile.color}`;
 
   card.innerHTML = `
     <img class="avatar">
-    <h2 class="username"></h2>
+    <div class="nick">${profile.nick || "Sem nick"}</div>
+    <div class="username"></div>
     <p class="activity"></p>
 
     <div class="socials">
@@ -38,12 +37,13 @@ profiles.forEach(profile => {
       const user = data.data;
 
       username.innerText = user.discord_user.username;
+
       avatar.src =
         `https://cdn.discordapp.com/avatars/${profile.id}/${user.discord_user.avatar}.png`;
 
       activity.innerText =
         user.listening_to_spotify
-        ? `${user.spotify.song} - ${user.spotify.artist}`
+        ? `${user.spotify.song}`
         : user.activities[0]?.name || "Idle";
 
     }catch{}
