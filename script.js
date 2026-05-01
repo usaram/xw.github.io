@@ -46,18 +46,19 @@ profiles.forEach(profile => {
         `https://cdn.discordapp.com/avatars/${profile.id}/${user.discord_user.avatar}.png`;
 
       // 🎧 MUSICA COM CAPA + ARTISTA
-      if(user.listening_to_spotify){
-        activity.innerText =
-          `${user.spotify.song} - ${user.spotify.artist}`;
+if(user.listening_to_spotify){
+  activity.innerText =
+    `${user.spotify.song} - ${user.spotify.artist}`;
 
-        cover.src = user.spotify.album_art_url;
-        cover.style.display = "block";
-      } else {
-        activity.innerText =
-          user.activities[0]?.name || "Idle";
+  cover.src = user.spotify.album_art_url;
+  cover.style.display = "block";
+} else {
+  activity.innerText =
+    user.activities[0]?.name || "/147";
 
-        cover.style.display = "none";
-      }
+  cover.style.display = "none";
+  cover.src = "";
+}
 
     }catch{}
   }
