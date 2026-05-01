@@ -2,25 +2,31 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Admin</title>
+<title>Admin App</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
 :root { --main:#c77dff; }
 
 body {
   margin:0;
-  height:100vh;
   background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   font-family:Arial;
   color:white;
 }
 
-/* CARD */
+/* CENTRAL */
+.center {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* BOX */
 .box {
-  width:300px;
+  width:320px;
   padding:20px;
   border-radius:20px;
 
@@ -35,10 +41,8 @@ input {
   width:100%;
   padding:10px;
   margin:6px 0;
-
   border:none;
   border-radius:10px;
-
   background:rgba(0,0,0,0.6);
   color:white;
 }
@@ -48,34 +52,58 @@ button {
   width:100%;
   padding:10px;
   margin-top:10px;
-
   border:none;
   border-radius:10px;
-
   background:var(--main);
   color:black;
   font-weight:bold;
   cursor:pointer;
+}
+
+/* LISTA */
+.list {
+  margin-top:10px;
+  max-height:150px;
+  overflow:auto;
+}
+
+.item {
+  padding:8px;
+  margin:5px 0;
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* PREVIEW */
+.preview {
+  margin-top:15px;
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
+<div class="center">
+
 <!-- LOGIN -->
 <div class="box" id="loginBox">
   <h3>🔐 Login</h3>
   <input id="passInput" placeholder="Senha">
-  <button onclick="doLogin()">Entrar</button>
+  <button onclick="login()">Entrar</button>
 </div>
 
-<!-- PAINEL -->
-<div class="box" id="panelBox" style="display:none">
+<!-- APP -->
+<div class="box" id="appBox" style="display:none">
 
   <h3>⚙️ Painel</h3>
 
   <input id="idInput" placeholder="ID Discord">
-  <input id="nickInput" placeholder="Nick personalizado">
+  <input id="nickInput" placeholder="Nick">
   <input type="color" id="colorInput">
 
   <input id="twitterInput" placeholder="Twitter">
@@ -83,69 +111,132 @@ button {
   <input id="tiktokInput" placeholder="TikTok">
   <input id="robloxInput" placeholder="Roblox">
 
-  <button onclick="saveProfile()">Salvar</button>
+  <button onclick="save()">Salvar / Atualizar</button>
+
+  <!-- LISTA -->
+  <div class="list" id="list"></div>
+
+  <!-- PREVIEW -->
+  <div class="preview" id="preview"></div>
+
+</div>
 
 </div>
 
 <script>
 const PASSWORD = "1234";
 
-// ELEMENTOS
 const loginBox = document.getElementById("loginBox");
-const panelBox = document.getElementById("panelBox");
-const passInput = document.getElementById("passInput");
+const appBox = document.getElementById("appBox");
 
-// LOGIN
-function doLogin(){
+function login(){
   if(passInput.value === PASSWORD){
-    loginBox.style.display = "none";
-    panelBox.style.display = "block";
+    loginBox.style.display="none";
+    appBox.style.display="block";
+    renderList();
   } else {
     alert("Senha errada");
   }
 }
 
+// STORAGE
+function getProfiles(){
+  return JSON.parse(localStorage.getItem("profiles")) || [];
+}
+
+function setProfiles(p){
+  localStorage.setItem("profiles", JSON.stringify(p));
+}
+
 // SALVAR
-function saveProfile(){
+function save(){
+  const id = idInput.value;
 
-  const id = document.getElementById("idInput").value;
-  const nick = document.getElementById("nickInput").value;
-  const color = document.getElementById("colorInput").value;
+  if(!id) return alert("Coloca ID");
 
-  const twitter = document.getElementById("twitterInput").value;
-  const insta = document.getElementById("instaInput").value;
-  const tiktok = document.getElementById("tiktokInput").value;
-  const roblox = document.getElementById("robloxInput").value;
-
-  if(!id){
-    alert("Coloca o ID primeiro");
-    return;
-  }
-
-  const profiles =
-    JSON.parse(localStorage.getItem("profiles")) || [];
+  let profiles = getProfiles();
 
   const newProfile = {
     id,
-    nick,
-    color,
-    links: {
-      twitter,
-      insta,
-      tiktok,
-      roblox
+    nick: nickInput.value,
+    color: colorInput.value,
+    links:{
+      twitter: twitterInput.value,
+      insta: instaInput.value,
+      tiktok: tiktokInput.value,
+      roblox: robloxInput.value
     }
   };
 
-  const updated =
-    profiles.filter(p => p.id !== id);
+  profiles = profiles.filter(p=>p.id!==id);
+  profiles.push(newProfile);
 
-  updated.push(newProfile);
+  setProfiles(profiles);
 
-  localStorage.setItem("profiles", JSON.stringify(updated));
-
-  alert("Salvo com sucesso!");
+  renderList();
+  updatePreview();
 }
+
+// LISTA
+function renderList(){
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  getProfiles().forEach(p=>{
+    const div = document.createElement("div");
+    div.className="item";
+
+    div.innerHTML = `
+      <span>${p.nick || p.id}</span>
+      <div>
+        <button onclick="edit('${p.id}')">✏️</button>
+        <button onclick="removeProfile('${p.id}')">❌</button>
+      </div>
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+// EDITAR
+function edit(id){
+  const p = getProfiles().find(x=>x.id===id);
+
+  idInput.value = p.id;
+  nickInput.value = p.nick;
+  colorInput.value = p.color;
+
+  twitterInput.value = p.links.twitter;
+  instaInput.value = p.links.insta;
+  tiktokInput.value = p.links.tiktok;
+  robloxInput.value = p.links.roblox;
+
+  updatePreview();
+}
+
+// REMOVER
+function removeProfile(id){
+  const updated = getProfiles().filter(p=>p.id!==id);
+  setProfiles(updated);
+  renderList();
+}
+
+// PREVIEW
+function updatePreview(){
+  const c = colorInput.value;
+
+  preview.innerHTML = `
+    <div style="box-shadow:0 0 20px ${c},0 0 50px ${c}; padding:10px; border-radius:10px;">
+      <b>${nickInput.value || "Nick"}</b><br>
+      <span style="opacity:0.6;">username</span>
+    </div>
+  `;
+}
+
+// EVENTOS
+document.querySelectorAll("input").forEach(i=>{
+  i.addEventListener("input", updatePreview);
+});
 </script>
 
 </body>
