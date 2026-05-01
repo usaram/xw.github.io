@@ -5,30 +5,60 @@ body {
   color:white;
 }
 
+/* GRID AUTOMÁTICO */
 .container {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:40px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:30px;
   padding:40px;
+  justify-items:center;
 }
 
+/* CARD */
 .card {
-  width:260px;
+  width:240px;
   padding:20px;
   border-radius:20px;
   text-align:center;
 
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(20px);
+
+  transition:0.3s;
 }
 
+.card:hover {
+  transform: scale(1.1);
+}
+
+/* AVATAR */
 .avatar {
   width:90px;
   border-radius:50%;
+  margin-bottom:10px;
 }
 
+/* NICK */
+.nick {
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* USERNAME */
+.username {
+  opacity:0.7;
+  font-size:14px;
+}
+
+/* SOCIAL */
 .socials i {
-  margin:8px;
+  margin:6px;
   font-size:20px;
+}
+
+/* RESPONSIVO */
+@media(max-width:1000px){
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
