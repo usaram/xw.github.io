@@ -1,100 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Admin</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-<style>
-:root { --main:#c77dff; }
-
-body {
-  margin:0;
-  height:100vh;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Arial;
-  color:white;
-}
-
-/* CARD */
-.box {
-  width:300px;
-  padding:20px;
-  border-radius:20px;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-
-  box-shadow:0 0 20px var(--main),0 0 50px var(--main);
-}
-
-/* INPUT */
-input {
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-
-  border:none;
-  border-radius:10px;
-
-  background:rgba(0,0,0,0.6);
-  color:white;
-}
-
-/* BOTÃO */
-button {
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-
-  border:none;
-  border-radius:10px;
-
-  background:var(--main);
-  color:black;
-  font-weight:bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="box" id="login">
-
-<h3>🔐 Login</h3>
-<input id="pass" placeholder="Senha">
-<button onclick="login()">Entrar</button>
-
-</div>
-
-<div class="box" id="panel" style="display:none">
-
-<h3>⚙️ Painel</h3>
-
-<input id="id" placeholder="ID Discord">
-<input id="nick" placeholder="Nick personalizado">
-<input type="color" id="color">
-
-<input id="twitter" placeholder="Twitter">
-<input id="insta" placeholder="Instagram">
-<input id="tiktok" placeholder="TikTok">
-<input id="roblox" placeholder="Roblox">
-
-<button onclick="save()">Salvar</button>
-
-</div>
-
 <script>
-const PASSWORD = "0810";
+const PASSWORD = "1234";
 
-function login(){
-  if(pass.value === PASSWORD){
-    login.style.display="none";
-    panel.style.display="block";
+const loginBox = document.getElementById("login");
+const panelBox = document.getElementById("panel");
+const passInput = document.getElementById("pass");
+
+function doLogin(){
+  if(passInput.value === PASSWORD){
+    loginBox.style.display = "none";
+    panelBox.style.display = "block";
+  } else {
+    alert("Senha errada");
   }
 }
 
@@ -103,19 +19,19 @@ function save(){
     JSON.parse(localStorage.getItem("profiles")) || [];
 
   const profile = {
-    id:id.value,
-    nick:nick.value,
-    color:color.value,
+    id: id.value,
+    nick: nick.value,
+    color: color.value,
     links:{
-      twitter:twitter.value,
-      insta:insta.value,
-      tiktok:tiktok.value,
-      roblox:roblox.value
+      twitter: twitter.value,
+      insta: insta.value,
+      tiktok: tiktok.value,
+      roblox: roblox.value
     }
   };
 
   const filtered =
-    profiles.filter(p=>p.id!==profile.id);
+    profiles.filter(p => p.id !== profile.id);
 
   filtered.push(profile);
 
@@ -124,6 +40,3 @@ function save(){
   alert("Salvo!");
 }
 </script>
-
-</body>
-</html>
