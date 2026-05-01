@@ -12,14 +12,14 @@ body {
   gap:40px;
 }
 
-/* 🔥 MODO CENTRAL (1–4 contas) */
+/* 🔥 CENTRAL (1–4 contas) */
 .container.center {
   justify-content:center;
   align-items:center;
-  min-height:100vh; /* 🔥 evita tela preta */
+  min-height:100vh;
 }
 
-/* 🔥 MODO NORMAL (5+ contas) */
+/* 🔥 TOPO (5+ contas) */
 .container.top {
   justify-content:center;
   padding:60px;
@@ -42,7 +42,7 @@ body {
   transform: scale(1.08);
 }
 
-/* CAPA */
+/* CAPA MÚSICA */
 .cover {
   width:100%;
   max-height:120px;
@@ -61,12 +61,31 @@ body {
 }
 
 /* TEXTO */
-.nick { font-weight:bold; }
-.username { opacity:0.6; font-size:13px; }
-.activity { font-size:13px; opacity:0.8; }
+.nick {
+  font-weight:bold;
+}
+
+.username {
+  opacity:0.6;
+  font-size:13px;
+}
+
+.activity {
+  font-size:13px;
+  opacity:0.8;
+  margin-top:5px;
+}
 
 /* SOCIAL */
 .socials i {
   margin:6px;
   font-size:18px;
+}
+
+/* SEM PERFIL */
+.empty {
+  width:100%;
+  text-align:center;
+  margin-top:100px;
+  opacity:0.6;
 }
