@@ -1,61 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>Painel</title>
+<html>
+<body style="background:black;color:white;text-align:center">
 
-<style>
-body {
-  background: black;
-  color: white;
-  font-family: Arial;
-  text-align: center;
-}
+<h2>Painel</h2>
 
-input {
-  margin: 10px;
-  padding: 10px;
-  width: 260px;
-}
-
-button {
-  padding: 10px;
-  background: purple;
-  border: none;
-  color: white;
-}
-</style>
-</head>
-<body>
-
-<h2>CONFIGURAR SITE</h2>
-
+<input id="id" placeholder="ID do Discord">
 <input id="color" placeholder="Cor (#c77dff)">
-<input id="bg" placeholder="Link do fundo">
-
-<input id="twitter" placeholder="Twitter/X">
+<input id="twitter" placeholder="Twitter">
 <input id="insta" placeholder="Instagram">
 <input id="tiktok" placeholder="TikTok">
 <input id="roblox" placeholder="Roblox">
 
-<br>
+<br><br>
 <button onclick="save()">Salvar</button>
 
 <script>
-function save() {
+function save(){
+  const id = document.getElementById("id").value;
+
+  const old = JSON.parse(localStorage.getItem("profile_"+id)) || {};
+
   const config = {
-    color: color.value,
-    bg: `url(${bg.value}) center/cover`,
+    color: color.value || old.color || "#c77dff",
     links: {
-      twitter: twitter.value,
-      insta: insta.value,
-      tiktok: tiktok.value,
-      roblox: roblox.value
+      twitter: twitter.value || old.links?.twitter || "",
+      insta: insta.value || old.links?.insta || "",
+      tiktok: tiktok.value || old.links?.tiktok || "",
+      roblox: roblox.value || old.links?.roblox || ""
     }
   };
 
-  localStorage.setItem("config", JSON.stringify(config));
-  alert("Salvo com sucesso!");
+  localStorage.setItem("profile_"+id, JSON.stringify(config));
+  alert("Salvo!");
 }
 </script>
 
