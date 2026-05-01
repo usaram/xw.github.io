@@ -1,31 +1,33 @@
-// 🔥 LISTA DE CONTAS (ADICIONA QUANTAS QUISER)
-const profiles = [
-  {
-    id: "1466308940634652745",
-    links: {
-      twitter: "https://x.com/...",
-      insta: "https://instagram.com/...",
-      tiktok: "",
-      roblox: ""
-    }
-  },
-  {
-    id: "1462586784067358894",
+// PERFIS BASE (NÃO ALTERA MAIS ISSO)
+const baseProfiles = [
+  { id: "ID_1" },
+  { id: "ID_2" }
+];
+
+const container = document.getElementById("container");
+
+// PEGAR CONFIG SALVA
+function getConfig(id){
+  return JSON.parse(localStorage.getItem("profile_"+id)) || {
+    color: "#c77dff",
     links: {
       twitter: "",
       insta: "",
       tiktok: "",
       roblox: ""
     }
-  }
-];
+  };
+}
 
-// CRIAR CARDS
-const container = document.getElementById("container");
+baseProfiles.forEach(profile => {
 
-profiles.forEach(profile => {
+  const config = getConfig(profile.id);
+
   const card = document.createElement("div");
   card.className = "card";
+
+  // COR INDIVIDUAL
+  card.style.boxShadow = `0 0 20px ${config.color}, 0 0 50px ${config.color}`;
 
   card.innerHTML = `
     <img class="cover">
@@ -34,10 +36,10 @@ profiles.forEach(profile => {
     <p class="activity"></p>
 
     <div class="socials">
-      <a href="${profile.links.twitter}" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a href="${profile.links.insta}" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="${profile.links.tiktok}" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="${profile.links.roblox}" target="_blank"><i class="fas fa-cube"></i></a>
+      ${config.links.twitter ? `<a href="${config.links.twitter}" target="_blank"><i class="fab fa-x-twitter"></i></a>` : ""}
+      ${config.links.insta ? `<a href="${config.links.insta}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
+      ${config.links.tiktok ? `<a href="${config.links.tiktok}" target="_blank"><i class="fab fa-tiktok"></i></a>` : ""}
+      ${config.links.roblox ? `<a href="${config.links.roblox}" target="_blank"><i class="fas fa-cube"></i></a>` : ""}
     </div>
   `;
 
@@ -48,68 +50,57 @@ profiles.forEach(profile => {
   const activity = card.querySelector(".activity");
   const cover = card.querySelector(".cover");
 
-  // DISCORD UPDATE
-  async function update() {
-    try {
+  async function update(){
+    try{
       const res = await fetch(`https://api.lanyard.rest/v1/users/${profile.id}`);
       const data = await res.json();
       const user = data.data;
 
       username.innerText = user.discord_user.username;
-      avatar.src =
-        `https://cdn.discordapp.com/avatars/${profile.id}/${user.discord_user.avatar}.png`;
+      avatar.src = `https://cdn.discordapp.com/avatars/${profile.id}/${user.discord_user.avatar}.png`;
 
-      if (user.listening_to_spotify) {
-        activity.innerText =
-          `${user.spotify.song} - ${user.spotify.artist}`;
-
+      if(user.listening_to_spotify){
+        activity.innerText = `${user.spotify.song} - ${user.spotify.artist}`;
         cover.src = user.spotify.album_art_url;
         cover.style.display = "block";
-      } else if (user.activities.length > 0) {
-        activity.innerText = user.activities[0].name;
-        cover.style.display = "none";
       } else {
-        activity.innerText = "Idle";
-        cover.style.display = "none";
+        activity.innerText = user.activities[0]?.name || "Idle";
       }
 
-    } catch {}
+    }catch{}
   }
 
-  setInterval(update, 5000);
+  setInterval(update,5000);
   update();
 });
 
-// PARTICLES (flocos LED)
+
+// 💜 PARTICLES LED
 const canvas = document.createElement("canvas");
 document.getElementById("particles").appendChild(canvas);
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-let flakes = [];
-
-for (let i = 0; i < 80; i++) {
-  flakes.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    s: Math.random() * 2,
-    v: Math.random() * 0.4
+let p = [];
+for(let i=0;i<70;i++){
+  p.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    s:Math.random()*2,
+    v:Math.random()*0.3
   });
 }
 
-function anim() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  flakes.forEach(f => {
-    f.y += f.v;
-    if (f.y > canvas.height) f.y = 0;
-
-    ctx.fillStyle = "#c77dff";
-    ctx.fillRect(f.x, f.y, f.s, f.s);
+function anim(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  p.forEach(pt=>{
+    pt.y+=pt.v;
+    if(pt.y>canvas.height) pt.y=0;
+    ctx.fillStyle="#c77dff";
+    ctx.fillRect(pt.x,pt.y,pt.s,pt.s);
   });
-
   requestAnimationFrame(anim);
 }
 
