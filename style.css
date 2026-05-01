@@ -1,73 +1,67 @@
-:root {
-  --main-color: #c77dff;
-}
-
 body {
-  margin: 0;
-  background: #000;
-  font-family: Arial;
-  color: white;
-  overflow-x: hidden;
+  margin:0;
+  background:#000;
+  font-family:Arial;
+  color:white;
 }
 
-/* CONTAINER */
+/* CENTRALIZA */
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 50px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  min-height:100vh;
 }
 
 /* CARD */
 .card {
-  width: 260px;
-  padding: 20px;
-  text-align: center;
+  width:260px;
+  padding:20px;
+  border-radius:25px;
+  text-align:center;
 
-  background: rgba(0,0,0,0.6);
-  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
 
-  box-shadow: 0 0 25px var(--main-color);
-  transition: 0.2s;
+  transition:0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px) scale(1.05);
 }
 
 /* AVATAR */
 .avatar {
-  width: 90px;
-  border-radius: 50%;
-  box-shadow: 0 0 15px var(--main-color);
+  width:90px;
+  border-radius:50%;
 }
 
 /* CAPA */
 .cover {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  display: none;
+  width:100%;
+  border-radius:10px;
+  margin-bottom:10px;
+  display:none;
 }
 
 /* SOCIAL */
 .socials a {
-  margin: 8px;
-  font-size: 22px;
-  color: white;
-  transition: 0.3s;
+  margin:8px;
+  font-size:22px;
+  color:white;
+  transition:0.3s;
 }
 
 .socials a:hover {
-  color: var(--main-color);
-  text-shadow: 0 0 15px var(--main-color);
+  transform: scale(1.2);
 }
 
 /* PARTICLES */
 #particles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
 }
