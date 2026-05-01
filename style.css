@@ -5,63 +5,30 @@ body {
   color:white;
 }
 
-/* CENTRALIZA */
 .container {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  align-items:center;
   gap:40px;
-  min-height:100vh;
+  padding:40px;
 }
 
-/* CARD */
 .card {
   width:260px;
   padding:20px;
-  border-radius:25px;
+  border-radius:20px;
   text-align:center;
 
-  backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.05);
-
-  transition:0.3s;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
 }
 
-.card:hover {
-  transform: translateY(-8px) scale(1.05);
-}
-
-/* AVATAR */
 .avatar {
   width:90px;
   border-radius:50%;
 }
 
-/* CAPA */
-.cover {
-  width:100%;
-  border-radius:10px;
-  margin-bottom:10px;
-  display:none;
-}
-
-/* SOCIAL */
-.socials a {
+.socials i {
   margin:8px;
-  font-size:22px;
-  color:white;
-  transition:0.3s;
-}
-
-.socials a:hover {
-  transform: scale(1.2);
-}
-
-/* PARTICLES */
-#particles {
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index:-1;
+  font-size:20px;
 }
