@@ -5,24 +5,19 @@ body {
   color:white;
 }
 
-/* CENTRALIZA PERFEITO */
+/* CENTRALIZA DE VERDADE */
 .container {
-  display:grid;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
 
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-
-  max-width: 1100px; /* 🔥 controla até 4 cards centralizados */
-  margin: auto;
-
-  gap:30px;
-  padding:40px;
+  gap:40px;
+  padding:60px;
 }
 
-/* CARD */
+/* CARD FIXO (NÃO ESTICA MAIS) */
 .card {
-  width:100%;
-  max-width:240px;
-
+  width:240px;
   padding:20px;
   border-radius:20px;
   text-align:center;
@@ -37,9 +32,12 @@ body {
   transform: scale(1.08);
 }
 
-/* CAPA DA MUSICA */
+/* CAPA DA MÚSICA (AGORA MENOR) */
 .cover {
   width:100%;
+  max-height:120px; /* 🔥 reduz tamanho */
+  object-fit:cover;
+
   border-radius:10px;
   margin-bottom:10px;
   display:none;
@@ -58,13 +56,13 @@ body {
   font-size:18px;
 }
 
-/* USER */
+/* USERNAME */
 .username {
   opacity:0.6;
   font-size:13px;
 }
 
-/* MUSICA */
+/* ATIVIDADE */
 .activity {
   font-size:13px;
   margin-top:5px;
