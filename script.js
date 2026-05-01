@@ -1,93 +1,86 @@
-const USER_ID = "1469403001671389254";
-
-// CONFIG
-let config = {
-  color: "#c77dff",
-  bg: "",
-  links: {
-    twitter: "",
-    insta: "",
-    tiktok: "",
-    roblox: ""
-  }
-};
-
-// LOAD CONFIG
-function loadConfig() {
-  const saved = JSON.parse(localStorage.getItem("config"));
-  if (saved) config = saved;
-  applyConfig();
-}
-
-function applyConfig() {
-  // 🔥 SÓ APLICA FUNDO SE EXISTIR
-  if (config.bg && config.bg !== "") {
-    document.body.style.background = config.bg;
-  } else {
-    document.body.style.background = "#000";
-  }
-
-  document.documentElement.style.setProperty("--main-color", config.color);
-
-  twitter.href = config.links.twitter || "#";
-  instagram.href = config.links.insta || "#";
-  tiktok.href = config.links.tiktok || "#";
-  roblox.href = config.links.roblox || "#";
-}
-
-// DISCORD
-async function updateDiscord() {
-  try {
-    const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
-    const data = await res.json();
-    const user = data.data;
-
-    username.innerText = user.discord_user.username;
-    avatar.src =
-      `https://cdn.discordapp.com/avatars/${USER_ID}/${user.discord_user.avatar}.png`;
-
-    let text = "Idle...";
-    const cover = document.getElementById("cover");
-
-    if (user.listening_to_spotify) {
-      text = `🎧 ${user.spotify.song} - ${user.spotify.artist}`;
-      cover.src = user.spotify.album_art_url;
-      cover.style.display = "block";
-    } else if (user.activities.length > 0) {
-      text = `🎮 ${user.activities[0].name}`;
-      cover.style.display = "none";
-    } else {
-      cover.style.display = "none";
+// 🔥 LISTA DE CONTAS (ADICIONA QUANTAS QUISER)
+const profiles = [
+  {
+    id: "1466308940634652745",
+    links: {
+      twitter: "https://x.com/...",
+      insta: "https://instagram.com/...",
+      tiktok: "",
+      roblox: ""
     }
-
-    activity.innerText = text;
-
-  } catch (e) {
-    console.log("Erro Discord");
+  },
+  {
+    id: "1462586784067358894",
+    links: {
+      twitter: "",
+      insta: "",
+      tiktok: "",
+      roblox: ""
+    }
   }
-}
+];
 
-setInterval(updateDiscord, 5000);
-updateDiscord();
+// CRIAR CARDS
+const container = document.getElementById("container");
 
-// MOUSE EFFECT
-const card = document.getElementById("card");
+profiles.forEach(profile => {
+  const card = document.createElement("div");
+  card.className = "card";
 
-document.addEventListener("mousemove", (e) => {
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+  card.innerHTML = `
+    <img class="cover">
+    <img class="avatar">
+    <h2 class="username"></h2>
+    <p class="activity"></p>
 
-  const percentX = (e.clientX - centerX) / centerX;
-  const percentY = (e.clientY - centerY) / centerY;
+    <div class="socials">
+      <a href="${profile.links.twitter}" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="${profile.links.insta}" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="${profile.links.tiktok}" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="${profile.links.roblox}" target="_blank"><i class="fas fa-cube"></i></a>
+    </div>
+  `;
 
-  const rotateY = percentX * 8;
-  const rotateX = percentY * -8;
+  container.appendChild(card);
 
-  card.style.transform =
-    `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+  const avatar = card.querySelector(".avatar");
+  const username = card.querySelector(".username");
+  const activity = card.querySelector(".activity");
+  const cover = card.querySelector(".cover");
+
+  // DISCORD UPDATE
+  async function update() {
+    try {
+      const res = await fetch(`https://api.lanyard.rest/v1/users/${profile.id}`);
+      const data = await res.json();
+      const user = data.data;
+
+      username.innerText = user.discord_user.username;
+      avatar.src =
+        `https://cdn.discordapp.com/avatars/${profile.id}/${user.discord_user.avatar}.png`;
+
+      if (user.listening_to_spotify) {
+        activity.innerText =
+          `${user.spotify.song} - ${user.spotify.artist}`;
+
+        cover.src = user.spotify.album_art_url;
+        cover.style.display = "block";
+      } else if (user.activities.length > 0) {
+        activity.innerText = user.activities[0].name;
+        cover.style.display = "none";
+      } else {
+        activity.innerText = "Idle";
+        cover.style.display = "none";
+      }
+
+    } catch {}
+  }
+
+  setInterval(update, 5000);
+  update();
 });
 
-// PARTICLES
+// PARTICLES (flocos LED)
 const canvas = document.createElement("canvas");
 document.getElementById("particles").appendChild(canvas);
 const ctx = canvas.getContext("2d");
@@ -95,27 +88,29 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let p = [];
+let flakes = [];
 
 for (let i = 0; i < 80; i++) {
-  p.push({
+  flakes.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    s: Math.random() * 2
+    s: Math.random() * 2,
+    v: Math.random() * 0.4
   });
 }
 
 function anim() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  p.forEach(pt => {
-    pt.y += 0.3;
-    if (pt.y > canvas.height) pt.y = 0;
-    ctx.fillStyle = "purple";
-    ctx.fillRect(pt.x, pt.y, pt.s, pt.s);
+
+  flakes.forEach(f => {
+    f.y += f.v;
+    if (f.y > canvas.height) f.y = 0;
+
+    ctx.fillStyle = "#c77dff";
+    ctx.fillRect(f.x, f.y, f.s, f.s);
   });
+
   requestAnimationFrame(anim);
 }
 
 anim();
-
-loadConfig();
