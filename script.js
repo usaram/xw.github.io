@@ -2,10 +2,12 @@ const container = document.getElementById("container");
 
 const profiles = JSON.parse(localStorage.getItem("profiles")) || [];
 
-profiles.forEach(profile => {
-
-  const card = document.createElement("div");
-  card.className = "card";
+// 🔥 DEFINE MODO
+if(profiles.length <= 4){
+  container.classList.add("center");
+} else {
+  container.classList.add("top");
+}
 
   card.style.boxShadow =
     `0 0 20px ${profile.color}, 0 0 50px ${profile.color}`;
