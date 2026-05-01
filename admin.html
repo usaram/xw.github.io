@@ -1,8 +1,103 @@
 <!DOCTYPE html>
-<html>
-<body style="background:black;color:white;text-align:center">
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Painel Admin</title>
 
-<h2>Painel</h2>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --main-color: #c77dff;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #000;
+  font-family: Arial;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.panel {
+  width: 320px;
+  padding: 25px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 0 20px var(--main-color),
+    0 0 50px var(--main-color);
+
+  text-align: center;
+}
+
+/* INPUTS */
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+
+  border: none;
+  outline: none;
+  border-radius: 10px;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+
+  box-shadow: 0 0 10px var(--main-color);
+
+  transition: 0.3s;
+}
+
+input:focus {
+  box-shadow:
+    0 0 15px var(--main-color),
+    0 0 30px var(--main-color);
+}
+
+/* BOTÃO */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: var(--main-color);
+  color: black;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px var(--main-color),
+    0 0 40px var(--main-color);
+}
+
+/* TÍTULO */
+h2 {
+  text-shadow: 0 0 10px var(--main-color);
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+
+<h2>⚙️ Painel Admin</h2>
 
 <input id="id" placeholder="ID do Discord">
 <input id="color" placeholder="Cor (#c77dff)">
@@ -11,8 +106,9 @@
 <input id="tiktok" placeholder="TikTok">
 <input id="roblox" placeholder="Roblox">
 
-<br><br>
 <button onclick="save()">Salvar</button>
+
+</div>
 
 <script>
 function save(){
