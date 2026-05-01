@@ -1,217 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>Admin PRO</title>
+<html>
+<body style="background:black;color:white;text-align:center">
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<h2>🔐 Login</h2>
+<input id="pass" placeholder="Senha">
+<button onclick="login()">Entrar</button>
 
-<style>
-:root {
-  --main-color: #c77dff;
-}
+<div id="panel" style="display:none">
 
-body {
-  margin:0;
-  height:100vh;
-  background:#000;
-  font-family:Arial;
-  color:white;
+<h2>Painel</h2>
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* LAYOUT */
-.wrapper {
-  display:flex;
-  gap:30px;
-}
-
-/* PAINEL */
-.panel {
-  width:300px;
-  padding:20px;
-  border-radius:20px;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-
-  box-shadow:
-    0 0 20px var(--main-color),
-    0 0 50px var(--main-color);
-}
-
-/* PREVIEW */
-.preview {
-  width:260px;
-  padding:20px;
-  border-radius:20px;
-  text-align:center;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-}
-
-/* INPUTS */
-input, select {
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-
-  border:none;
-  border-radius:10px;
-
-  background:rgba(0,0,0,0.6);
-  color:white;
-
-  box-shadow:0 0 10px var(--main-color);
-}
-
-input[type="color"] {
-  padding:2px;
-  height:40px;
-}
-
-/* BOTÃO */
-button {
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-
-  border:none;
-  border-radius:10px;
-
-  background:var(--main-color);
-  color:black;
-  font-weight:bold;
-
-  cursor:pointer;
-}
-
-/* PREVIEW CARD */
-.preview-card {
-  margin-top:10px;
-  padding:15px;
-  border-radius:15px;
-}
-
-.socials i {
-  margin:6px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="wrapper">
-
-<!-- PAINEL -->
-<div class="panel">
-
-<h3>⚙️ Config</h3>
-
-<select id="profileSelect"></select>
-
+<input id="id" placeholder="ID do Discord">
 <input type="color" id="color">
 <input id="twitter" placeholder="Twitter">
 <input id="insta" placeholder="Instagram">
 <input id="tiktok" placeholder="TikTok">
 <input id="roblox" placeholder="Roblox">
 
-<button onclick="save()">Salvar</button>
-
-</div>
-
-<!-- PREVIEW -->
-<div class="preview">
-
-<h3>Preview</h3>
-
-<div class="preview-card" id="previewCard">
-  <h4 id="previewName">User</h4>
-
-  <div class="socials" id="previewSocials"></div>
-</div>
-
-</div>
+<br><br>
+<button onclick="save()">Salvar Conta</button>
 
 </div>
 
 <script>
-// LISTA DE IDS (mesma do site)
-const profiles = ["ID_1","ID_2"];
+const PASSWORD = "1234"; // 🔐 MUDA AQUI
 
-// POPULAR SELECT
-const select = document.getElementById("profileSelect");
-
-profiles.forEach(id=>{
-  const opt = document.createElement("option");
-  opt.value = id;
-  opt.textContent = id;
-  select.appendChild(opt);
-});
-
-// CARREGAR CONFIG
-function load(){
-  const id = select.value;
-  const data = JSON.parse(localStorage.getItem("profile_"+id)) || {};
-
-  color.value = data.color || "#c77dff";
-  twitter.value = data.links?.twitter || "";
-  insta.value = data.links?.insta || "";
-  tiktok.value = data.links?.tiktok || "";
-  roblox.value = data.links?.roblox || "";
-
-  updatePreview();
+function login(){
+  if(pass.value === PASSWORD){
+    document.getElementById("panel").style.display="block";
+    pass.style.display="none";
+  } else {
+    alert("Senha errada");
+  }
 }
 
-// PREVIEW AO VIVO
-function updatePreview(){
-  const c = color.value;
-
-  const card = document.getElementById("previewCard");
-  const socials = document.getElementById("previewSocials");
-
-  card.style.boxShadow = `0 0 20px ${c}, 0 0 50px ${c}`;
-
-  socials.innerHTML = `
-    ${twitter.value ? '<i class="fab fa-x-twitter"></i>' : ""}
-    ${insta.value ? '<i class="fab fa-instagram"></i>' : ""}
-    ${tiktok.value ? '<i class="fab fa-tiktok"></i>' : ""}
-    ${roblox.value ? '<i class="fas fa-cube"></i>' : ""}
-  `;
-}
-
-// SALVAR
 function save(){
-  const id = select.value;
+  const profiles =
+    JSON.parse(localStorage.getItem("profiles")) || [];
 
-  const old = JSON.parse(localStorage.getItem("profile_"+id)) || {};
-
-  const config = {
-    color: color.value || old.color || "#c77dff",
+  const profile = {
+    id: id.value,
+    color: color.value,
     links: {
-      twitter: twitter.value || old.links?.twitter || "",
-      insta: insta.value || old.links?.insta || "",
-      tiktok: tiktok.value || old.links?.tiktok || "",
-      roblox: roblox.value || old.links?.roblox || ""
+      twitter: twitter.value,
+      insta: insta.value,
+      tiktok: tiktok.value,
+      roblox: roblox.value
     }
   };
 
-  localStorage.setItem("profile_"+id, JSON.stringify(config));
-  alert("Salvo!");
+  // evitar duplicar ID
+  const filtered =
+    profiles.filter(p => p.id !== profile.id);
+
+  filtered.push(profile);
+
+  localStorage.setItem("profiles", JSON.stringify(filtered));
+
+  alert("Conta salva!");
 }
-
-// EVENTOS
-document.querySelectorAll("input, select").forEach(el=>{
-  el.addEventListener("input", updatePreview);
-});
-
-select.addEventListener("change", load);
-
-load();
 </script>
 
 </body>
