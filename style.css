@@ -5,7 +5,7 @@ body {
   overflow:hidden;
 }
 
-/* FUNDO MAIS ESCURO */
+/* FUNDO */
 .bg {
   position:fixed;
   width:100%;
@@ -37,46 +37,60 @@ body {
   align-items:center;
 }
 
-/* AREA 3D */
 #character {
-  width:300px;
-  height:400px;
+  width:320px;
+  height:420px;
 }
 
 /* DIREITA */
 .right {
   width:60%;
   padding:40px;
-  display:flex;
-  flex-direction:column;
 }
 
 /* REDES */
 .socials {
   display:flex;
-  gap:20px;
-  margin-bottom:30px;
+  gap:25px;
+  margin-bottom:40px;
 }
 
-.socials a {
-  text-decoration:none;
-  color:white;
+.social {
+  position:relative;
+  cursor:pointer;
+}
+
+.social span {
   opacity:0.7;
   transition:0.3s;
 }
 
-.socials a:hover {
+.social:hover span {
   opacity:1;
+}
+
+/* POPUP */
+.popup {
+  position:absolute;
+  top:30px;
+  left:0;
+  background:rgba(0,0,0,0.8);
+  padding:10px;
+  border-radius:10px;
+  display:none;
+}
+
+.social:hover .popup {
+  display:block;
 }
 
 /* PERFIS */
 #profiles {
   display:flex;
   flex-wrap:wrap;
-  gap:25px;
+  gap:20px;
 }
 
-/* CARD */
 .card {
   width:200px;
   padding:15px;
@@ -87,10 +101,15 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform:translateY(-5px) scale(1.05);
 }
 
 .avatar {
   width:60px;
   border-radius:50%;
+}
+
+.activity {
+  font-size:12px;
+  opacity:0.7;
 }
