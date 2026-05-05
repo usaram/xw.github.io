@@ -3,8 +3,8 @@ const profilesDiv = document.getElementById("profiles");
 /* 🔥 EDITA AQUI */
 const profiles = [
   {
-    id: "SEU_ID_AQUI",
-    nick: "Seu Nick"
+    id: "1466308940634652745",
+    nick: "inquieto"
   }
 ];
 
