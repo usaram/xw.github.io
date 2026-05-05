@@ -1,86 +1,50 @@
-const canvas = document.createElement("canvas");
-canvas.width = 300;
-canvas.height = 400;
+const container = document.getElementById("character");
 
-document.getElementById("character").appendChild(canvas);
+const scene = new THREE.Scene();
 
-const ctx = canvas.getContext("2d");
+const camera = new THREE.PerspectiveCamera(30, 320/420, 0.1, 20);
+camera.position.set(0,1.4,2);
 
-let blink = 0;
-let blinkTimer = 0;
+const renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(320,420);
+container.appendChild(renderer.domElement);
 
-let talking = false;
-let mouth = 0;
+const light = new THREE.DirectionalLight(0xffffff,1);
+light.position.set(1,1,1);
+scene.add(light);
 
-// simular fala aleatória
-setInterval(() => {
-  talking = true;
-  setTimeout(() => talking = false, 2000);
-}, 4000);
+scene.add(new THREE.AmbientLight(0xffffff,0.7));
 
-function drawFace() {
+const loader = new THREE.GLTFLoader();
 
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+let vrm;
 
-  const centerX = 150;
-  const centerY = 200;
+loader.load("model.vrm",(gltf)=>{
+  THREE.VRM.from(gltf).then(v=>{
+    vrm=v;
+    scene.add(vrm.scene);
+    vrm.scene.rotation.y=Math.PI;
+  });
+});
 
-  // CABEÇA
-  ctx.fillStyle = "#fff";
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, 80, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.strokeStyle = "#000";
-  ctx.stroke();
-
-  // OLHOS
-  ctx.fillStyle = "#000";
-
-  let eyeHeight = 10;
-
-  if(blink > 0){
-    eyeHeight = 2; // piscando
-  }
-
-  // olho esquerdo
-  ctx.fillRect(centerX - 40, centerY - 20, 20, eyeHeight);
-
-  // olho direito
-  ctx.fillRect(centerX + 20, centerY - 20, 20, eyeHeight);
-
-  // BOCA
-  if(talking){
-    mouth = Math.sin(Date.now() * 0.02) * 10;
-  } else {
-    mouth = 2;
-  }
-
-  ctx.beginPath();
-  ctx.arc(centerX, centerY + 30, 10 + mouth, 0, Math.PI);
-  ctx.stroke();
-}
-
-// BLINK automático
-function updateBlink(){
-  blinkTimer++;
-
-  if(blinkTimer > 200){
-    blink = 5;
-    blinkTimer = 0;
-  }
-
-  if(blink > 0){
-    blink--;
-  }
-}
-
-// LOOP
 function animate(){
   requestAnimationFrame(animate);
 
-  updateBlink();
-  drawFace();
+  if(vrm){
+
+    // piscar
+    const blink = Math.sin(Date.now()*0.002);
+    vrm.expressionManager.setValue("blink", blink>0.95?1:0);
+
+    // falar
+    const talk = Math.abs(Math.sin(Date.now()*0.01));
+    vrm.expressionManager.setValue("aa", talk);
+
+    // idle
+    vrm.scene.rotation.y += 0.002;
+  }
+
+  renderer.render(scene,camera);
 }
 
 animate();
