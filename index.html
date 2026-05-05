@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Snow Profile</title>
+<title>Snow UI</title>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,18 +11,30 @@
 
 <canvas id="snow"></canvas>
 
-<!-- FUNDO -->
 <div class="bg"></div>
 
 <div class="layout">
 
-  <!-- ESQUERDA (vazio / decoração) -->
+  <!-- ESQUERDA (3D) -->
   <div class="left">
-    <h1 class="title">雪</h1>
+    <div id="character"></div>
   </div>
 
-  <!-- DIREITA (PERFIS) -->
-  <div class="right" id="profiles"></div>
+  <!-- DIREITA -->
+  <div class="right">
+
+    <!-- REDES -->
+    <div class="socials">
+      <a href="#">ツイッター</a>
+      <a href="#">インスタ</a>
+      <a href="#">ティックトック</a>
+      <a href="#">ディスコード</a>
+    </div>
+
+    <!-- PERFIS -->
+    <div id="profiles"></div>
+
+  </div>
 
 </div>
 
