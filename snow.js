@@ -4,14 +4,14 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let snowflakes = [];
+let snow = [];
 
-for(let i=0;i<150;i++){
-  snowflakes.push({
+for(let i=0;i<200;i++){
+  snow.push({
     x:Math.random()*canvas.width,
     y:Math.random()*canvas.height,
-    r:Math.random()*3,
-    d:Math.random()*1
+    r:Math.random()*2 + 1,
+    speed:Math.random()*1 + 0.5
   });
 }
 
@@ -19,20 +19,14 @@ function draw(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
   ctx.fillStyle="white";
-  ctx.beginPath();
 
-  snowflakes.forEach(f=>{
-    ctx.moveTo(f.x,f.y);
+  snow.forEach(f=>{
+    ctx.beginPath();
     ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
-  });
+    ctx.fill();
 
-  ctx.fill();
-  update();
-}
+    f.y += f.speed;
 
-function update(){
-  snowflakes.forEach(f=>{
-    f.y += f.d;
     if(f.y > canvas.height){
       f.y = 0;
       f.x = Math.random()*canvas.width;
@@ -40,4 +34,4 @@ function update(){
   });
 }
 
-setInterval(draw,30);
+setInterval(draw, 30);
