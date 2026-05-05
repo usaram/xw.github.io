@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Snow UI</title>
+<title>Anime Profile</title>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -10,12 +10,11 @@
 <body>
 
 <canvas id="snow"></canvas>
-
 <div class="bg"></div>
 
 <div class="layout">
 
-  <!-- ESQUERDA (3D) -->
+  <!-- ESQUERDA -->
   <div class="left">
     <div id="character"></div>
   </div>
@@ -23,23 +22,52 @@
   <!-- DIREITA -->
   <div class="right">
 
-    <!-- REDES -->
     <div class="socials">
-      <a href="#">ツイッター</a>
-      <a href="#">インスタ</a>
-      <a href="#">ティックトック</a>
-      <a href="#">ディスコード</a>
+
+      <div class="social">
+        <span>ツイッター</span>
+        <div class="popup">
+          <a href="https://x.com/" target="_blank">abrir</a>
+        </div>
+      </div>
+
+      <div class="social">
+        <span>インスタ</span>
+        <div class="popup">
+          <a href="#">abrir</a>
+        </div>
+      </div>
+
+      <div class="social">
+        <span>ティックトック</span>
+        <div class="popup">
+          <a href="#">abrir</a>
+        </div>
+      </div>
+
+      <div class="social">
+        <span>ディスコード</span>
+        <div class="popup" id="discordBox">
+          carregando...
+        </div>
+      </div>
+
     </div>
 
-    <!-- PERFIS -->
     <div id="profiles"></div>
 
   </div>
 
 </div>
 
+<!-- LIBS 3D -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.152/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@2.0.7/lib/three-vrm.min.js"></script>
+
 <script src="snow.js"></script>
 <script src="script.js"></script>
-<script src="character.js"></script>
+<script src="character3d.js"></script>
+
 </body>
 </html>
