@@ -5,13 +5,13 @@ body {
   overflow:hidden;
 }
 
-/* FUNDO */
+/* FUNDO COM SUA IMAGEM */
 .bg {
   position:fixed;
   width:100%;
   height:100%;
-  background:url("https://images.unsplash.com/photo-1549880181-56a44cf4a9a5") center/cover;
-  filter: blur(8px) brightness(0.5);
+  background:url("snw.jpg") center/cover no-repeat;
+  filter: blur(6px) brightness(0.6);
   z-index:-2;
 }
 
@@ -33,62 +33,56 @@ body {
 .left {
   width:40%;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
 }
 
-/* PERSONAGEM */
-#character {
-  width:250px;
-  height:350px;
-  border-radius:20px;
+.title {
+  font-size:80px;
+  opacity:0.3;
+}
+
+/* DIREITA (PERFIS) */
+.right {
+  width:60%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:30px;
+  padding:40px;
+  justify-content:flex-start;
+  align-content:flex-start;
+  overflow:auto;
+}
+
+/* CARD */
+.card {
+  width:220px;
+  padding:15px;
+  border-radius:15px;
 
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(10px);
 
-  box-shadow:0 0 30px #c77dff;
+  transition:0.3s;
 }
 
-/* REDES */
-.socials {
-  margin-top:20px;
+/* HOVER COM MOUSE */
+.card:hover {
+  transform: scale(1.05) translateY(-5px);
 }
 
-.item {
-  margin:10px 0;
-  position:relative;
-  cursor:pointer;
+/* AVATAR */
+.avatar {
+  width:70px;
+  border-radius:50%;
 }
 
-/* TEXTO JAPONES */
-.item span {
-  font-size:18px;
-  letter-spacing:2px;
+/* TEXTO */
+.nick {
+  font-weight:bold;
 }
 
-/* HOVER */
-.hover {
-  position:absolute;
-  left:120%;
-  top:0;
-
-  background:rgba(0,0,0,0.8);
-  padding:10px;
-  border-radius:10px;
-
-  display:none;
-}
-
-.item:hover .hover {
-  display:block;
-}
-
-/* DIREITA */
-.right {
-  width:60%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:40px;
+.activity {
+  font-size:12px;
+  opacity:0.7;
 }
