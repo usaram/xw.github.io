@@ -1,89 +1,82 @@
-* {
-    transform: translateY(-18px) rotate(1deg);
-  }
-
-  100% {
-    transform: translateY(0px) rotate(-1deg);
-  }
+body {
+  margin:0;
+  background:#000;
+  font-family:Arial;
+  color:white;
 }
 
-/* TEXTO DIREITA */
-.content {
-  position: absolute;
-
-  right: 12%;
-  top: 38%;
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.container {
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
 }
 
-.jp-title {
-  font-size: 32px;
-  font-weight: 300;
-
-  letter-spacing: 6px;
-
-  opacity: .95;
-
-  margin-bottom: 6px;
+.container.center {
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
 }
 
-/* LINKS */
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.container.top {
+  justify-content:center;
+  padding:60px;
 }
 
-.link {
-  color: rgba(255,255,255,0.75);
+.card {
+  width:240px;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
 
-  text-decoration: none;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
 
-  font-size: 18px;
-  font-weight: 300;
-
-  letter-spacing: 3px;
-
-  transition: .25s ease;
-
-  width: fit-content;
+  transition:0.3s;
 }
 
-.link:hover {
-  color: white;
-  transform: translateX(10px);
-
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.4);
+.card:hover {
+  transform: scale(1.08);
 }
 
-/* MOBILE */
-@media(max-width:900px){
+.cover {
+  width:100%;
+  max-height:120px;
+  object-fit:cover;
 
-  .anime {
-    height: 58vh;
-  }
+  border-radius:10px;
+  margin-bottom:10px;
+  display:none;
+}
 
-  .content {
-    top: auto;
-    bottom: 8%;
+.avatar {
+  width:80px;
+  border-radius:50%;
+  margin:10px 0;
+}
 
-    right: 50%;
+.nick {
+  font-weight:bold;
+}
 
-    transform: translateX(50%);
+.username {
+  opacity:0.6;
+  font-size:13px;
+}
 
-    text-align: center;
-    align-items: center;
-  }
+.activity {
+  font-size:13px;
+  opacity:0.8;
+  margin-top:5px;
+}
 
-  .jp-title {
-    font-size: 24px;
-  }
+.socials i {
+  margin:6px;
+  font-size:18px;
+}
 
-  .link {
-    font-size: 16px;
-  }
+.empty {
+  width:100%;
+  text-align:center;
+  margin-top:100px;
+  opacity:0.6;
 }
