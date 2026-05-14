@@ -1,58 +1,257 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anime Dark Site</title>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>my little princess sofi</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sofibebe.xyz/">
+    <meta property="og:title" content="my little princess sofi">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://sofibebe.xyz/public/opengraph.png">
+    <meta property="og:image:secure_url" content="https://sofibebe.xyz/public/opengraph.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta property="og:image:alt" content="i luv u so much my little princess">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="my little princess sofi">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://sofibebe.xyz/public/opengraph.png">
+    <link rel="icon" href="./public/bow-pink.png" type="image/png">
+    <link rel="preload" href="./public/sofi.png" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Source+Code+Pro:wght@300;400&family=Nunito:wght@400;500;700;800&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body class="intro-world-active">
+    <audio id="bg-audio" loop preload="auto">
+      <source src="./public/w2.mp3" type="audio/mpeg">
+    </audio>
+    <div id="cursor" aria-hidden="true"></div>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;500&display=swap" rel="stylesheet">
+    <section id="intro-stage" aria-label="Sofi world intro">
+      <canvas id="canvas" aria-hidden="true"></canvas>
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+      <div class="blob" id="blob-a"></div>
+      <div class="blob" id="blob-b"></div>
+      <div class="blob" id="blob-c"></div>
 
-<canvas id="particles"></canvas>
+      <div id="opening" hidden>
+        <div class="open-line" id="ol1">feito com amor</div>
+        <div class="open-line" id="ol2">para minha pequena garotinha especial !</div>
+      </div>
 
-<div class="overlay"></div>
+      <div id="world">
+        <div class="poem-glow"></div>
+        <div id="poem">
+          <div class="poem-line" id="p1">esse mundo &#233; fofo</div>
+          <div class="poem-line" id="p2">porque voc&#234; existe nele</div>
+          <div class="poem-sig" id="p3">pra voc&#234;, Sofi &#9825;</div>
+        </div>
 
-<div class="container">
+        <div class="layer" id="layer-far">
+          <button class="molang" id="m-cat" type="button" aria-label="Molang fazendo biquinho">
+            <img src="./public/molang-pout.png" width="90" height="90" alt="">
+            <span class="note">ela assistiu a carta inteira &#9825;</span>
+          </button>
+        </div>
 
-  <!-- PERSONAGEM -->
-  <div class="anime-wrapper">
+        <div class="layer" id="layer-mid">
+          <button class="molang" id="m-kiss" type="button" aria-label="Molang mandando beijinho">
+            <img src="./public/molang-kiss-chick.png" width="115" height="115" alt="">
+            <span class="note">travessura favorita &#9825;</span>
+          </button>
+          <button class="molang" id="m-bye" type="button" aria-label="Molang gatinho assustado">
+            <img src="./public/molang-cat-sweat.png" width="118" height="118" alt="">
+            <span class="note">mas n&#227;o &#233; um adeus de verdade</span>
+          </button>
+        </div>
 
-    <!-- TROQUE PELA SUA PNG -->
-    <img
-      src="mariya.png"
-      class="anime"
-      id="anime"
-    >
+        <div class="layer" id="layer-near">
+          <button class="molang" id="m-white" type="button" aria-label="Molang com cafe e bolsinha">
+            <img src="./public/molang-coffee-bag.png" width="128" height="128" alt="">
+            <span class="note">fui buscar um cafezinho</span>
+          </button>
+          <button class="molang" id="m-coffee" type="button" aria-label="Molang marrom feliz">
+            <img src="./public/molang-brown-happy.png" width="128" height="128" alt="">
+            <span class="note">game mode</span>
+          </button>
+          <button class="molang" id="m-brown" type="button" aria-label="Molang dando tchau com pintinho">
+            <img src="./public/molang-bye-chick.png" width="133" height="133" alt="">
+            <span class="note">feliz s&#243; de te ver feliz</span>
+          </button>
+        </div>
 
-  </div>
+        <div id="scooter-wrap">
+          <img src="./public/molang-scooter.png" alt="Molang na scooter">
+        </div>
+      </div>
 
-  <!-- TEXTOS -->
-  <div class="content">
-    <div class="links">
+      <div id="hint">
+        <span class="hint-portal hint-portal-left" aria-hidden="true"></span>
+        <span class="hint-text">aperte qualquer tecla</span>
+        <span class="hint-portal hint-portal-right" aria-hidden="true"></span>
+        <span class="hint-heart" aria-hidden="true">&#9825;</span>
+      </div>
+    </section>
 
-      <a href="https://instagram.com" target="_blank" class="link">
-        インスタグラム
-      </a>
+    <section id="loading-screen" aria-label="Sofi loading screen">
+      <div id="sofi-card">
+        <div class="profile-side">
+          <div class="avatar-wrap">
+            <img id="discord-avatar" src="./public/bow-pink.png" alt="Discord profile icon" decoding="async">
+            <img id="discord-avatar-decoration" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" decoding="async" hidden>
+            <div class="avatar-fallback" id="avatar-fallback">s</div>
+          </div>
+          <div class="profile-name" id="loading-profile-name">Sofia</div>
+          <div class="profile-username" id="loading-profile-user">@i4pup</div>
+        </div>
 
-      <a href="https://x.com" target="_blank" class="link">
-        ツイッター
-      </a>
+        <div class="terminal-side">
+          <div class="terminal-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="terminal-title">loading...</span>
+          </div>
+          <pre id="terminal-lines"></pre><span class="cursor"></span>
+        </div>
+      </div>
+    </section>
 
-      <a href="https://tiktok.com" target="_blank" class="link">
-        ティックトック
-      </a>
+    <div id="final-black" role="presentation"></div>
 
-    </div>
+    <section id="story-stage" aria-label="Final sequence">
+      <div id="letter-scene" class="story-scene">
+        <div id="letter-glow" aria-hidden="true"></div>
+        <button id="letter-button" type="button" aria-label="Abrir carta">
+          <img id="letter-image" src="./public/carta.png" alt="Carta fechada" decoding="async" fetchpriority="high">
+        </button>
+        <div id="letter-hint">toque para abrir</div>
+      </div>
+      <main id="contentRoot" class="content-root">
+        <div class="soft-bg"></div>
+        <div id="floatingHearts" class="floating-hearts"></div>
 
-  </div>
+        <button id="prevBtn" type="button" class="page-arrow left" aria-label="anterior">
+          <img src="./public/seta.png" alt="seta esquerda" decoding="async">
+        </button>
 
-</div>
+        <button id="nextBtn" type="button" class="page-arrow right" aria-label="próximo">
+          <img src="./public/seta.png" alt="seta direita" decoding="async">
+        </button>
 
-<script src="script.js"></script>
-</body>
+        <div id="dots" class="page-dots"></div>
+        <section id="pageWrap" class="page-wrap from-right"></section>
+      </main>
+    </section>
+
+    <section id="winx-stage" class="winx-stage" aria-label="Windows 7 pink transition">
+      <div class="winx-blink" id="winx-blink" aria-hidden="true">
+        <div class="winx-palpebra-sup"></div>
+        <div class="winx-palpebra-inf"></div>
+      </div>
+
+      <div class="winx-foco" id="winx-foco" aria-hidden="true"></div>
+
+      <div class="winx-intro" id="winx-intro">
+        <article class="winx-carta" id="winx-carta">
+          <div class="winx-conteudo-carta">
+            <div class="winx-selinho">&#9825;</div>
+          </div>
+        </article>
+        <p class="winx-intro-warning" id="winx-intro-warning">não aperte F12!</p>
+      </div>
+
+      <div class="winx-boot" id="winx-boot" aria-hidden="true">
+        <canvas id="winx-boot-canvas" aria-hidden="true"></canvas>
+      </div>
+
+      <div class="winx-desktop" id="winx-desktop">
+        <div class="winx-vm-header" id="winx-vm-header">[Running] - 192.168.1.---</div>
+
+        <div class="winx-desktop-icons">
+          <button class="winx-desk-icon-button" id="winx-go-home" type="button" title="Voltar ao início" aria-label="Voltar ao início">
+            <canvas class="winx-icon-canvas" id="winx-icon-home" width="48" height="48" aria-hidden="true"></canvas>
+            <span>Início</span>
+          </button>
+          <button class="winx-desk-icon-button" id="winx-open-letter" type="button" title="Abrir carta" aria-label="Abrir carta">
+            <canvas class="winx-icon-canvas" id="winx-icon-letter" width="48" height="48" aria-hidden="true"></canvas>
+            <span>Carta</span>
+          </button>
+        </div>
+
+        <article class="winx-janela winx-letter-window" id="winx-letter-window" aria-label="Janela da carta">
+          <header class="winx-janela-titulo" id="winx-letter-title">
+            <canvas class="winx-title-icon-canvas" id="winx-title-letter-canvas" width="18" height="18" aria-hidden="true"></canvas>
+            <span class="winx-titulo-texto">Carta.exe</span>
+            <div class="winx-janela-controles">
+              <button class="winx-controle" id="winx-min-letter" type="button" aria-label="Minimizar carta" title="Minimizar">&#8212;</button>
+              <button class="winx-controle winx-close-game" id="winx-close-letter" type="button" aria-label="Fechar carta" title="Fechar">&#10005;</button>
+            </div>
+          </header>
+          <div class="winx-letter-content" id="winx-letter-content">
+            <img src="./public/carta.png" alt="Carta" id="winx-letter-image" decoding="async">
+            <p>Você é muito especial. Essa carta sempre vai estar aqui pra te lembrar disso.</p>
+            <div class="winx-letter-warning" id="winx-letter-warning">Não aperte F12!</div>
+          </div>
+        </article>
+
+        <article class="winx-janela" id="winx-game-window" aria-label="Janela do jogo Coquette Catch">
+          <header class="winx-janela-titulo" id="winx-window-title">
+            <canvas class="winx-title-icon-canvas" id="winx-title-game-canvas" width="18" height="18" aria-hidden="true"></canvas>
+            <span class="winx-titulo-texto">sofibobona.exe</span>
+            <div class="winx-janela-controles">
+              <button class="winx-controle" id="winx-min-game" type="button" aria-label="Minimizar jogo" title="Minimizar">&#8212;</button>
+              <button class="winx-controle winx-close-game" id="winx-close-game" type="button" aria-label="Fechar jogo" title="Fechar">&#10005;</button>
+            </div>
+          </header>
+
+          <div class="winx-game-area">
+            <div class="winx-game-stage" id="winx-game-stage">
+              <div class="winx-hud">
+                <span>Doces Coletados: <strong id="winx-score">0</strong></span>
+                <small>Use &larr; &rarr;, A/D ou mova o mouse</small>
+                <button id="winx-restart-game" type="button" aria-label="Reiniciar jogo">Reiniciar</button>
+              </div>
+
+              <div class="winx-catcher" id="winx-catcher" aria-hidden="true">
+                <img src="./public/molang-coffee-bag.png" alt="" decoding="async">
+              </div>
+
+              <div class="winx-game-message" id="winx-game-message">
+                <h2>sofilang</h2>
+                <p>Mova o Molang para pegar marshmallow e cupcake. Cada doce coletado deixa a tela mais fofa.</p>
+                <button id="winx-start-game" type="button">Começar</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <nav class="winx-taskbar" aria-label="Barra de tarefas">
+          <div class="winx-task-center">
+            <button class="winx-task-icon" id="winx-open-game" type="button" title="sofilang" aria-label="Abrir game Coquette Catch">
+              <canvas class="winx-task-canvas" id="winx-game-canvas" width="28" height="28" aria-hidden="true"></canvas>
+              <span class="winx-task-label">sofilang</span>
+            </button>
+          </div>
+
+          <div class="winx-tray">
+            <div class="winx-internet" title="Sinal de internet">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="winx-clock" id="winx-clock">--:--<br>--/--</div>
+          </div>
+        </nav>
+      </div>
+    </section>n 
+
+    <script src="./devtools-guard.js" defer></script>
+    <script src="./script.js" defer></script>
+  </body>
 </html>
