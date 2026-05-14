@@ -2275,7 +2275,7 @@ if (letterButton) {
 if (prevBtn) {
   prevBtn.addEventListener("click", () => {
     if (page > 0) goTo(page - 1, "left", prevBtn);
-  });
+  })
 }
 
 if (nextBtn) {
