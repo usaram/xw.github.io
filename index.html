@@ -2,72 +2,60 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Anime Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anime Dark Profile</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<canvas id="snow"></canvas>
-<div class="bg"></div>
+<canvas id="particles"></canvas>
 
-<div class="layout">
+<div class="overlay"></div>
 
-  <!-- ESQUERDA -->
-  <div class="left">
-    <div id="character"></div>
+<div class="container">
+
+  <!-- PERSONAGEM -->
+  <div class="character-area">
+
+    <!-- TROQUE PELA SUA IMAGEM -->
+    <img src="mariya.png" class="character" id="character">
+
   </div>
 
   <!-- DIREITA -->
-  <div class="right">
+  <div class="right-side">
+
+    <div class="jp-text">
+      レインズ
+    </div>
 
     <div class="socials">
 
-      <div class="social">
+      <a class="social" href="https://x.com" target="_blank">
         <span>ツイッター</span>
-        <div class="popup">
-          <a href="https://x.com/" target="_blank">abrir</a>
-        </div>
-      </div>
+        <small>Twitter / X</small>
+      </a>
 
-      <div class="social">
+      <a class="social" href="https://instagram.com" target="_blank">
         <span>インスタ</span>
-        <div class="popup">
-          <a href="#">abrir</a>
-        </div>
-      </div>
+        <small>Instagram</small>
+      </a>
 
-      <div class="social">
+      <a class="social" href="https://tiktok.com" target="_blank">
         <span>ティックトック</span>
-        <div class="popup">
-          <a href="#">abrir</a>
-        </div>
-      </div>
-
-      <div class="social">
-        <span>ディスコード</span>
-        <div class="popup" id="discordBox">
-          carregando...
-        </div>
-      </div>
+        <small>TikTok</small>
+      </a>
 
     </div>
-
-    <div id="profiles"></div>
 
   </div>
 
 </div>
 
-<!-- LIBS 3D -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.152/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/loaders/GLTFLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@2.0.7/lib/three-vrm.min.js"></script>
-
-<script src="snow.js"></script>
 <script src="script.js"></script>
-<script src="character3d.js"></script>
-
 </body>
 </html>
