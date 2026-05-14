@@ -1,79 +1,88 @@
 * {
-/* TEXTO JP */
-.jp-text {
-  font-size: 40px;
-  font-weight: 200;
-  letter-spacing: 12px;
+  }
 
-  opacity: .9;
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-/* REDES */
-.socials {
+/* TEXTO DIREITA */
+.content {
+  position: absolute;
+
+  right: 12%;
+  top: 38%;
+
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
-.social {
-  width: 280px;
+.jp-title {
+  font-size: 32px;
+  font-weight: 300;
 
-  padding: 16px 20px;
+  letter-spacing: 6px;
 
-  border: 1px solid rgba(255,255,255,0.08);
+  opacity: .95;
 
-  background: rgba(255,255,255,0.02);
+  margin-bottom: 6px;
+}
 
-  backdrop-filter: blur(10px);
+/* LINKS */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  border-radius: 14px;
+.link {
+  color: rgba(255,255,255,0.75);
 
   text-decoration: none;
-  color: white;
+
+  font-size: 18px;
+  font-weight: 300;
+
+  letter-spacing: 3px;
 
   transition: .25s ease;
+
+  width: fit-content;
 }
 
-.social:hover {
+.link:hover {
+  color: white;
   transform: translateX(10px);
 
-  background: rgba(255,255,255,0.06);
-
-  border-color: rgba(255,255,255,0.2);
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.4);
 }
 
-.social span {
-  display: block;
-
-  font-size: 17px;
-  letter-spacing: 3px;
-}
-
-.social small {
-  opacity: .45;
-}
-
-/* RESPONSIVO */
+/* MOBILE */
 @media(max-width:900px){
 
-  .container {
-    flex-direction: column;
-    justify-content: center;
-    gap: 40px;
+  .anime {
+    height: 58vh;
   }
 
-  .character-area,
-  .right-side {
-    width: 100%;
-    align-items: center;
+  .content {
+    top: auto;
+    bottom: 8%;
+
+    right: 50%;
+
+    transform: translateX(50%);
+
     text-align: center;
+    align-items: center;
   }
 
-  .character {
-    height: 42vh;
+  .jp-title {
+    font-size: 24px;
   }
 
-  .social {
-    width: 260px;
+  .link {
+    font-size: 16px;
   }
 }
