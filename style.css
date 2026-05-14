@@ -1,8 +1,9 @@
 * {
+    transform: translateY(-18px) rotate(1deg);
   }
 
   100% {
-    transform: translateY(0px);
+    transform: translateY(0px) rotate(-1deg);
   }
 }
 
