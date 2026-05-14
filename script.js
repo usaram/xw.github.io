@@ -1,5 +1,7 @@
 // =========================
 
+for(let i = 0; i < 120; i++){
+
   particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
@@ -56,7 +58,7 @@ window.addEventListener('mousemove', e => {
   const moveX = (window.innerWidth / 2 - e.clientX) / 60;
   const moveY = (window.innerHeight / 2 - e.clientY) / 80;
 
-  anime.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  anime.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
 });
 
 // =========================
