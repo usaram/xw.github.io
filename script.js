@@ -1,52 +1,74 @@
-const profiles = [
-  {
-    id: "1466308940634652745",
-    nick: "inquieto"
-  }
-];
+// =========================
 
-const profilesDiv = document.getElementById("profiles");
-const discordBox = document.getElementById("discordBox");
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
 
-profiles.forEach(p=>{
+let particles = [];
 
-  const card=document.createElement("div");
-  card.className="card";
+for(let i = 0; i < 180; i++){
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2 + 0.5,
+    speedY: Math.random() * 0.7 + 0.2,
+    speedX: (Math.random() - 0.5) * 0.4
+  });
+}
 
-  card.innerHTML=`
-    <img class="avatar">
-    <div>${p.nick}</div>
-    <div class="username"></div>
-    <div class="activity"></div>
-  `;
+function drawParticles(){
 
-  profilesDiv.appendChild(card);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  const avatar=card.querySelector(".avatar");
-  const username=card.querySelector(".username");
-  const activity=card.querySelector(".activity");
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
 
-  async function update(){
-    const res=await fetch(`https://api.lanyard.rest/v1/users/${p.id}`);
-    const data=await res.json();
-    const user=data.data;
+  particles.forEach(p => {
 
-    username.innerText=user.discord_user.username;
+    let dx = p.x - mouse.x;
+    let dy = p.y - mouse.y;
 
-    avatar.src=`https://cdn.discordapp.com/avatars/${p.id}/${user.discord_user.avatar}.png`;
+    let dist = Math.sqrt(dx * dx + dy * dy);
 
-    if(user.listening_to_spotify){
-      activity.innerText=`${user.spotify.song} - ${user.spotify.artist}`;
-    }else{
-      activity.innerText=user.activities[0]?.name || "Idle";
+    if(dist < 120){
+      p.x += dx * 0.015;
+      p.y += dy * 0.015;
     }
 
-    discordBox.innerHTML = `
-      ${user.discord_user.username}<br>
-      ${activity.innerText}
-    `;
-  }
+    p.y += p.speedY;
+    p.x += p.speedX;
 
-  setInterval(update,5000);
-  update();
+    if(p.y > canvas.height){
+      p.y = -5;
+      p.x = Math.random() * canvas.width;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
+
+// =========================
+// PERSONAGEM SEGUE MOUSE
+// =========================
+
+const character = document.getElementById('character');
+
+window.addEventListener('mousemove', e => {
+
+  const x = (window.innerWidth / 2 - e.clientX) / 50;
+  const y = (window.innerHeight / 2 - e.clientY) / 60;
+
+  character.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// RESPONSIVO
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
